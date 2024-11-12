@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!-- Added by HTTrack -->
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <!-- /Added by HTTrack -->
+    <head>
+        {% load static %} {% include 'uhead.html' %}
+    </head>
+
+    <body>
+        {% include 'uheader.html' %} {% include 'uslider.html' %}
+
+        <section class="inner-section about-company">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <div class="about-content">
+                            <h2>Motive Of Rento Mojo</h2>
+                            <p>
+                                Hi! We’re <b>Rentomojo,</b> an online rental solution for your furnishing needs.
+                            </p>
+                            <p>
+                                Why renting, you ask? Well, because we understand that unnecessary furniture and appliance costs aren’t the best investment options. So we decided to come up with an easier solution instead. We provide more
+                                than online rental services, we help you explore a world of possibilities. With our assured quality and prompt services,you can say goodbye to all the hassles that come with buying and say hello to
+                                convenience.
+                            </p>
+                            <p>
+                                <b>RentoMojo</b> offers asset leasing, helping you set up your home at easy and affordable rentals (RMI).
+                                 We have amazingly affordable options for you to bring your relocation alive. 
+                                 Our hassle free approach to renting is characterized by our packages which are just a click away and delivered free of cost. 
+                                 We're here to change the way shopping is done because we believe in <b>"Smart Ownership"​</b>.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="img"><img style="border-radius: 30px; width: 100%;margin-left: 40px;" src="static/images/about/f.gif" alt="about" /></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--start-->
+
+        <section class="section brand-part">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section-heading">
+                            <h2>shop by categories</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="brand-slider slider-arrow">
+                    {% for catdata in cat_data %}
+                    <div class="brand-wrap">
+                        <div class="brand-media">
+                            <img src="/media/{{catdata.2}}" alt="brand" />
+                            <div class="brand-overlay">
+                                <a href="/usubcategory?cat_id={{catdata.0}}"><i class="fas fa-link"></i></a>
+                            </div>
+                        </div>
+                        <div class="brand-meta">
+                            <h4>{{catdata.1}}</h4>
+                            <!--<p>{{catdata.4}}</p>-->
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-btn-50">
+                            <a href="/usubcategory" class="btn btn-outline"><i class="fas fa-eye"></i><span>view all</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section promo-part">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="promo-img">
+                            <a href="#"><img src="static/images/promo/home/banner.jpg" alt="promo" /></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <section class="section feature-part">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-heading">
+                            <h2>our featured items</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row row-cols-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-2">
+                    {% for productdata in product_data %}
+                    <div class="col">
+                        
+                        <div class="feature-card" style="height: 260px;">
+                            <div class="feature-media">
+                                <div class="feature-label"><label class="label-text feat">{{ productdata.19 }}</label></div>
+                                <div class="feature-image" href=""> <img style="height: 220px;width:230px;" src="/media/{{productdata.6}}" alt="brand" /></div>
+                            </div>
+                            <div class="feature-content">
+                                <h6 class="feature-name"><a>{{ productdata.4 }}</a></h6>
+                                <div class="feature-rating">
+                                    <i class="active icofont-star"></i><i class="active icofont-star"></i><i class="active icofont-star"></i><i class="active icofont-star"></i><i class="icofont-star"></i>
+                                    <a>(3 Reviews)</a>
+                                </div>
+                                <p style="color: #2192ed;font-weight:bold;">100% Refundable deposit ₹{{ productdata.17 }}</p>
+                        
+                                <h6 class="feature-price">
+                                    <del>₹{{ productdata.12 }}</del>
+                                    <span style="color: green;">₹{{ productdata.13 }}<small><b>/Monthly Rent</b></small></span>
+                                </h6>
+                                <a class="details-wish wish" href="/uproductdetails?p_id={{productdata.0}}"
+                                    title="Add" 
+                                    style="display: inline-block; padding: 6px 120px; background-color: #e8e8e8; color: #39404a; text-align: center; text-decoration: none; border-radius: 5px; font-size: 16px; transition: background-color 0.3s, color 0.3s;"
+                                    onmouseover="this.style.backgroundColor='#de3326'; this.style.color='white';"
+                                    onmouseout="this.style.backgroundColor='#e8e8e8'; this.style.color='#39404a';">
+                                    <i class="fas fa-shopping-basket" style="margin-right: 5px;"></i>
+                                    <span>add</span>
+                                    </a>
+                                <!--<button class="product-add" title="Add to Cart"><i class="fas fa-shopping-basket"></i><span>add</span></button>
+                                <div class="product-action">
+                                    <button class="action-minus" title="Quantity Minus"><i class="icofont-minus"></i></button><input class="action-input" title="Quantity Number" type="text" name="quantity" value="1" />
+                                    <button class="action-plus" title="Quantity Plus"><i class="icofont-plus"></i></button>
+                                </div>-->
+                            </div>
+                        </div>
+                        
+                    </div>
+                    {% empty %}
+                        <p style="color: red;font-size: x-large;text-align: center;margin-left: auto;margin-right: auto;">We’re sorry, but there are no items available in the selected city!!</p>
+                    {% endfor %}
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-btn-25">
+                            <a href="/uproduct" class="btn btn-outline"><i class="fas fa-eye"></i><span>show more</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section testimonial-part">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section-heading">
+                            <h2>Customer's feedback</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="testimonial-slider slider-arrow">
+                            {% for fdata in f_data %}
+                            <div class="testimonial-card">
+                                <i class="fas fa-quote-left"></i>
+                                <p>{{ fdata.3 }}</p>
+                                <h5>{{ fdata.1 }}</h5>
+                                <ul>
+                                    <li class="fas fa-star"></li>
+                                    <li class="fas fa-star"></li>
+                                    <li class="fas fa-star"></li>
+                                    <li class="fas fa-star"></li>
+                                    <li class="fas fa-star"></li>
+                                </ul>
+                                <img src="static/images/avatar/user.png" alt="testimonial" />
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--End-->
+        <!-- Start of Footer section
+      ============================================= -->
+        {% include 'ufooter.html' %}
+        <!-- End of Footer section
+         ============================================= -->
+
+        <!-- For Js Library -->
+        {% include 'uscript.html' %}
+    </body>
+</html>

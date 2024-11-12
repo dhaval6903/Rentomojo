@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    {% include 'head.html' %}
+</head>
+
+<body>
+
+    <script>
+        function myFunction() {
+          var x = document.getElementById("myInput");
+          if (x.type === "password") {
+            x.type = "text";
+          } else {
+            x.type = "password";
+          }
+        }
+        </script>
+
+    <div class="ch-container">
+        <div class="row">
+            
+        <div class="row">
+            <div class="col-md-12 center login-header" >
+                <a class="navbar-brand" href=""> <img alt="Charisma Logo" style="height: 60px;
+                    width: 166px;  margin-left: 700px; margin-bottom:200px; margin-top: -40px; border-radius: 10px;" src="\media\logo.png" class="hidden-xs"/>
+                </a>
+                <h2 style="margin-top: 50px; margin-bottom: 50px;">Welcome to Rentomojo</h2>
+            </div>
+            <!--/span-->
+        </div><!--/row-->
+    
+        <div class="row">
+            <div class="well col-md-5 center login-box">
+                <div class="alert alert-info">
+                    Please login with your Username and Password.
+                </div>
+                <form class="form-horizontal" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <fieldset>
+                        <div class="input-group input-group-lg">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user red"></i></span>
+                            <input type="text" class="form-control" placeholder="Username" name="a_username" >
+                        </div>
+                        
+                        <div class="clearfix"></div><br>
+    
+                        <div class="input-group input-group-lg">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock red"></i></span>
+                            <input type="password" class="form-control" placeholder="Password" name="a_password" id="myInput">
+                        </div>
+                        <div style="margin-top: 10px; float: left;"><input type="checkbox" onclick="myFunction()">Show Password</div>
+                        <div class="clearfix"></div>
+    
+                        <p class="center col-md-5">
+                            <button type="submit" class="btn btn-primary">Login</button>
+                        </p>
+                    </fieldset>
+                </form>
+                {% if msg != "" %}
+                <div class="alert alert-info">{{msg}}</div>
+                {% endif %}
+            </div>
+            <!--/span-->
+        </div><!--/row-->
+    </div><!--/fluid-row-->
+    
+    </div><!--/.fluid-container-->
+    
+    <!-- external javascript -->
+    {% include 'script.html' %}
+    
+</body>
+</html>

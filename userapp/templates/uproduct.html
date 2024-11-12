@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!-- Added by HTTrack -->
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <!-- /Added by HTTrack -->
+    <head>
+        {% load static %} {% include 'uhead.html' %}
+    </head>
+
+    <body>
+        {% include 'uheader.html' %} {% include 'ubanner.html' %}
+        <!--start-->
+
+        <section class="section feature-part">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-heading">
+                            <h2>our products</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row row-cols-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-2">
+                    {% for productdata in product_data %}
+                    <div class="col">
+                        <div class="feature-card" style="height: 260px;">
+                            <div class="feature-media">
+                                <div class="feature-label"><label class="label-text feat">{{ productdata.19 }}</label></div>
+                                <div class="feature-image" href=""><img style="height: 220px;width:230px;" src="/media/{{productdata.6}}" alt="brand" /></div>
+                            </div>
+                            <div class="feature-content">
+                                <h6 class="feature-name"><a>{{ productdata.4 }}</a></h6>
+                                <div class="feature-rating">
+                                    <i class="active icofont-star"></i><i class="active icofont-star"></i><i class="active icofont-star"></i><i class="active icofont-star"></i><i class="icofont-star"></i>
+                                    <a>(3 Reviews)</a>
+                                </div>
+                                <p style="color: #2192ed; font-weight: bold;">100% Refundable deposit ₹{{ productdata.17 }}</p>
+
+                                <h6 class="feature-price">
+                                    <del>₹{{ productdata.12 }}</del>
+                                    <span style="color: green;">
+                                        ₹{{ productdata.13 }}<small><b>/Monthly Rent</b></small>
+                                    </span>
+                                </h6>
+                                <a class="details-wish wish" href="/uproductdetails?p_id={{productdata.0}}"
+                                    title="Add" 
+                                    style="display: inline-block; padding: 6px 120px; background-color: #e8e8e8; color: #39404a; text-align: center; text-decoration: none; border-radius: 5px; font-size: 16px; transition: background-color 0.3s, color 0.3s;"
+                                    onmouseover="this.style.backgroundColor='#de3326'; this.style.color='white';"
+                                    onmouseout="this.style.backgroundColor='#e8e8e8'; this.style.color='#39404a';">
+                                    <i class="fas fa-shopping-basket" style="margin-right: 5px;"></i>
+                                    <span>add</span>
+                                    </a>
+                                <!--<button class="product-add" title="Add to Cart"><i class="fas fa-shopping-basket"></i><span>add</span></button>-->
+                                <div class="product-action">
+                                    <button class="action-minus" title="Quantity Minus"><i class="icofont-minus"></i></button><input class="action-input" title="Quantity Number" type="text" name="quantity" value="1" />
+                                    <button class="action-plus" title="Quantity Plus"><i class="icofont-plus"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% empty %}
+                        <p style="color: red;font-size: x-large;text-align: center;margin-left: auto;margin-right: auto;">No products found!!</p>
+                    {% endfor %}
+                </div>
+                <!-- <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-btn-25">
+                        <a href="shop-4column.html" class="btn btn-outline"><i class="fas fa-eye"></i><span>show more</span></a>
+                    </div>
+                </div>
+            </div>-->
+            </div>
+        </section>
+
+        <!--End-->
+        <!-- Start of Footer section
+      ============================================= -->
+        {% include 'ufooter.html' %}
+        <!-- End of Footer section
+         ============================================= -->
+
+        <!-- For Js Library -->
+        {% include 'uscript.html' %}
+    </body>
+</html>

@@ -1,0 +1,57 @@
+{% load static %}
+
+<div class="sidebar-nav">
+    <div class="nav-canvas">
+        <div class="nav-sm nav nav-stacked">
+
+        </div>
+        <ul class="nav nav-pills nav-stacked main-menu">
+            <li class="nav-header">Main</li>
+            <li><a class="ajax-link" href="/admin"><i class="glyphicon glyphicon-home"></i><span> Home</span></a>
+            </li>
+            <li><a class="ajax-link" href="/admin/discontinuerent"><i class="glyphicon glyphicon-record"></i><span> Discontinue Rental</span></a>
+            </li>
+            <li><a class="ajax-link" href="/admin/generatebill"><i class="glyphicon glyphicon-refresh"></i><span> Generate Bill</span></a>
+            </li>
+            <li class="accordion">
+                <a class="ajax-link" href="#"><i class="glyphicon glyphicon-bold"></i><span> Booking</span></a>
+                 <ul class="nav nav-pills nav-stacked">
+                    <li><a href="/admin/pendingbooking">Pending</a></li>
+                    <li><a href="/admin/completebooking">Complete</a></li>
+                    <li><a href="/admin/cancelbooking">Cancel</a></li>
+                   
+                </ul> 
+            </li>
+            <li><a class="ajax-link" href="/admin/payment"><i class="glyphicon glyphicon-qrcode"></i><span> Payment</span></a>
+            </li>
+            <li><a class="ajax-link" href="/admin/product"><i class="glyphicon glyphicon-share"></i><span> Product</span></a>
+            </li>
+            <li><a class="ajax-link" href="/admin/user"><i class=" glyphicon glyphicon-user"></i><span> User</span></a>
+            </li>
+            <li><a class="ajax-link" href="/admin/category"><i class="glyphicon glyphicon-list"></i><span> Category</span></a>
+            </li>
+            <li><a class="ajax-link" href="/admin/subcategory"><i class="glyphicon glyphicon-th"></i><span> Sub Category</span></a>
+            </li>
+            <li><a class="ajax-link" href="/admin/city"><i class="glyphicon glyphicon-map-marker"></i><span> City</span></a>
+            </li>
+        </li>
+        <li><a class="ajax-link" href="/admin/feedback"><i class="glyphicon glyphicon-eye-open"></i><span> Feedback</span></a>
+        </li>
+            <li class="accordion">
+                <a class="ajax-link" href="#"><i class="glyphicon glyphicon-plus"></i><span> Reports</span></a>
+                 <ul class="nav nav-pills nav-stacked">
+                    
+                    <li><a href="/admin/userreport">User</a></li>
+                    <li><a href="/admin/feedbackreport">Feedback</a></li>
+                    <li><a href="/admin/bookingreport">Booking</a></li>
+                    <li><a href="/admin/productsreport">Product</a></li>
+                    <li><a href="/admin/paymentreport">Payment</a></li>
+                </ul> 
+            </li>
+            <li><a class="ajax-link" href="/admin/login"><i class="glyphicon glyphicon-off"></i><span> Logout</span></a>
+            </li>
+          
+        </ul>
+        
+    </div>
+</div>

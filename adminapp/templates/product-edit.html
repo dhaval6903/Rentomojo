@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    {% include 'head.html' %}
+</head>
+
+<body>
+    <!-- topbar starts -->
+    <div class="navbar navbar-default" role="navigation">
+        {% include 'header.html' %}
+        
+    
+    </div>
+    <!-- topbar ends -->
+<div class="ch-container">
+    <div class="row">
+        
+        <!-- left menu starts -->
+        <div class="col-sm-2 col-lg-2">
+            {% include 'leftbar.html' %}
+                    </div>
+        <!--/span-->
+        <!-- left menu ends -->
+
+      
+
+<div id="content" class="col-lg-10 col-sm-10">
+            <!-- content starts -->
+    <div>
+    <ul class="breadcrumb">
+        <li>
+            <a href="/admin">Home</a>
+        </li>
+        <li>
+            <a href="#">Product Edit</a>
+        </li>
+    </ul>
+</div>
+<!--start-->
+<div class="row">
+    <div class="box col-md-12">
+        <div class="box-inner">
+            <div class="box-header well" data-original-title="">
+                <h2><i class="glyphicon glyphicon-edit"></i> Edit Product</h2>
+
+                <div class="box-icon">
+                    <a href="#" class="btn btn-setting btn-round btn-default"><i
+                            class="glyphicon glyphicon-cog"></i></a>
+                    <a href="#" class="btn btn-minimize btn-round btn-default"><i
+                            class="glyphicon glyphicon-chevron-up"></i></a>
+                    <a href="#" class="btn btn-close btn-round btn-default"><i
+                            class="glyphicon glyphicon-remove"></i></a>
+                </div>
+            </div>
+            <div class="box-content">
+                <form role="form" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                   
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">City</label>
+                        <select class="form-control" id="exampleInputPassword1" name="c_id">
+                            <option  value="">--Select--</option>
+                            {% for cdata in c_data %}
+                                {% if cdata.0 == p_data.0.3 %}
+                                <option  value="{{cdata.0}}" selected>{{cdata.1}}</option>
+                                {% else %}
+                                <option  value="{{cdata.0}}">{{cdata.1}}</option>
+                                {% endif %}
+
+                           {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Category</label>
+                        <select class="form-control" id="exampleInputPassword1" name="cat_id">
+                            <option  value="">--Select--</option>
+                            {% for catdata in cat_data %}
+                                {% if catdata.0 == p_data.0.1 %}
+                                <option  value="{{catdata.0}}" selected>{{catdata.1}}</option>
+                                {% else %}
+                                <option  value="{{catdata.0}}">{{catdata.1}}</option>
+                                {% endif %}
+
+                           {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Subcategory</label>
+                        <select class="form-control" id="exampleInputPassword1" name="sub_id">
+                            <option  value="">--Select--</option>
+                            {% for subdata in sub_data %}
+                                {% if subdata.0 == p_data.0.2 %}
+                                <option  value="{{subdata.0}}" selected>{{subdata.2}}</option>
+                                {% else %}
+                                <option  value="{{subdata.0}}">{{subdata.2}}</option>
+                                {% endif %}
+
+                           {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Name</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Product Name" name="p_name" value="{{p_data.0.4}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Details</label>
+                        <textarea class="form-control" id="exampleInputEmail1" placeholder="Enter Product Details" name="p_detail">{{p_data.0.5}}</textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Image1</label>
+                        <br/>
+                        <img src="/media/{{p_data.0.6}}" height="100px" width="100px" />
+                        <input type="hidden" name="old_img1" class="form-control" value="{{p_data.0.6}}" id="exampleInputPassword1" placeholder="Image">
+                        <br/>
+                        <input type="file" class="form-control" id="exampleInputEmail1" name="p_img1">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Image2</label>
+                        <br/>
+                        <img src="/media/{{p_data.0.7}}" height="100px" width="100px" />
+                        <input type="hidden" name="old_img2" class="form-control" value="{{p_data.0.7}}" id="exampleInputPassword1" placeholder="Image">
+                        <br/>
+                        <input type="file" class="form-control" id="exampleInputEmail1" name="p_img2">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Image3</label>
+                        <br/>
+                        <img src="/media/{{p_data.0.8}}" height="100px" width="100px" />
+                        <input type="hidden" name="old_img3" class="form-control" value="{{p_data.0.8}}" id="exampleInputPassword1" placeholder="Image">
+                        <br/>
+                        <input type="file" class="form-control" id="exampleInputEmail1" name="p_img3">
+                    </div>
+                    
+                   
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Size</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Product Size" name="p_size" value="{{p_data.0.9}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Color</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Product Color" name="p_color" value="{{p_data.0.10}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Material</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Product Material" name="p_material" value="{{p_data.0.11}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">MRP</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Product MRP" name="p_mrp" value="{{p_data.0.12}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Price</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Product Price" name="p_price" value="{{p_data.0.13}}">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Deposite</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Product Deposite" name="p_deposite" value="{{p_data.0.17}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Status</label>
+                        <select class="form-control" id="exampleInputPassword1" name="p_status">
+                             {% if p_data.0.14 == 'Active' %}
+                            <option  value="Active" selected>Active</option>
+                            <option  value="Deactive">Deactive</option>
+                            {% else %}
+                            <option  value="Active">Active</option>
+                            <option  value="Deactive" selected>Deactive</option>
+                            {% endif %}
+                        </select>
+                    </div>
+                    
+                    
+                    <button type="submit" class="btn btn-default">Change Details</button>
+                </form>
+
+
+            </div>
+        </div>
+    </div>
+    <!--/span-->
+
+</div>
+
+
+<!--end-->
+
+
+
+
+   <!-- content ends -->
+    </div><!--/#content.col-md-0-->
+</div><!--/fluid-row-->
+
+    
+    <hr>
+
+    
+    <footer class="row">
+        {% include 'footer.html' %}
+        </footer>
+
+</div><!--/.fluid-container-->
+
+<!-- external javascript -->
+{% include 'script.html' %}
+
+</body>
+</html>

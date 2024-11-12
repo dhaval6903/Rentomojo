@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    {% include 'head.html' %}
+</head>
+
+<body>
+    <!-- topbar starts -->
+    <div class="navbar navbar-default" role="navigation">
+        {% include 'header.html' %}
+        
+    
+    </div>
+    <!-- topbar ends -->
+<div class="ch-container">
+    <div class="row">
+        
+        <!-- left menu starts -->
+        <div class="col-sm-2 col-lg-2">
+            {% include 'leftbar.html' %}
+                    </div>
+        <!--/span-->
+        <!-- left menu ends -->
+
+      
+
+<div id="content" class="col-lg-10 col-sm-10">
+            <!-- content starts -->
+    <div>
+    <ul class="breadcrumb">
+        <li>
+            <a href="/admin">Home</a>
+        </li>
+        <li>
+            <a href="#">Category</a>
+        </li>
+    </ul>
+</div>
+<!--start-->
+<div class="row">
+    <div class="box col-md-12">
+        <div class="box-inner">
+            <div class="box-header well" data-original-title="">
+                <h2><i class="glyphicon glyphicon-edit"></i> Edit Category</h2>
+
+                <div class="box-icon">
+                    <a href="#" class="btn btn-setting btn-round btn-default"><i
+                            class="glyphicon glyphicon-cog"></i></a>
+                    <a href="#" class="btn btn-minimize btn-round btn-default"><i
+                            class="glyphicon glyphicon-chevron-up"></i></a>
+                    <a href="#" class="btn btn-close btn-round btn-default"><i
+                            class="glyphicon glyphicon-remove"></i></a>
+                </div>
+            </div>
+            <div class="box-content">
+                <form role="form" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Name</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" value="{{cat_data.0.1}}" name="cat_name">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Image</label>
+                        <br/>
+                        <img src="/media/{{cat_data.0.2}}" height="50px" width="50px" />
+                        <input type="hidden" name="old_img" class="form-control" value="{{cat_data.0.2}}" id="exampleInputPassword1" placeholder="Image">
+                        <br/>
+                        <input type="file" name="cat_img" class="form-control" id="exampleInputPassword1" placeholder="Image">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Status</label>
+                        <select class="form-control" id="exampleInputPassword1" name="cat_status">
+                            {% if cat_data.0.3 == 'Active' %}
+                            <option value="Active" selected>Active</option>
+                            <option value="Deactive">Deactive</option>
+                            {% else %}
+                            <option value="Active">Active</option>
+                            <option value="Deactive" selected>Deactive</option>
+                            {% endif %}
+                        </select>
+                    </div>
+                    
+                    
+                    <button type="submit" class="btn btn-default">Change Details</button>
+                </form>
+
+
+            </div>
+        </div>
+    </div>
+    <!--/span-->
+
+</div>
+
+
+<!--end-->
+
+
+
+
+   <!-- content ends -->
+    </div><!--/#content.col-md-0-->
+</div><!--/fluid-row-->
+
+    
+    <hr>
+
+    
+    <footer class="row">
+        {% include 'footer.html' %}
+        </footer>
+
+</div><!--/.fluid-container-->
+
+<!-- external javascript -->
+{% include 'script.html' %}
+
+</body>
+</html>

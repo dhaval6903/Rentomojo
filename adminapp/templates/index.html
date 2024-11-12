@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    {% include 'head.html' %}
+</head>
+
+<body>
+    <!-- topbar starts -->
+    <div class="navbar navbar-default" role="navigation">
+        {% include 'header.html' %}
+        
+    
+    </div>
+    <!-- topbar ends -->
+<div class="ch-container">
+    <div class="row">
+        
+        <!-- left menu starts -->
+        <div class="col-sm-2 col-lg-2">
+            {% include 'leftbar.html' %}
+                    </div>
+        <!--/span-->
+        <!-- left menu ends -->
+
+      
+
+<div id="content" class="col-lg-10 col-sm-10">
+            <!-- content starts -->
+    <div>
+    <ul class="breadcrumb">
+        
+        <li>
+            <a href="#">Booking Information</a>
+        </li>
+    </ul>
+</div>
+
+
+<!--start-->
+<div class=" row ">
+    <div class="col-md-3 col-sm-3 col-xs-6 ">
+        <a data-toggle="tooltip" title="Total Pending Booking" class="well top-block" href="/admin/pendingbooking">
+            <i class="glyphicon glyphicon-refresh "></i>
+
+            <div>Pending Booking</div>
+            <div>[ {{pbookingcount.0.0}} ]</div>
+           
+        </a>
+    </div>
+
+    <div class="col-md-3 col-sm-3 col-xs-6">
+        <a data-toggle="tooltip" title="Total Complete Booking" class="well top-block" href="/admin/completebooking">
+            <i class="glyphicon glyphicon-ok-circle"></i>
+
+            <div>Complete Booking</div>
+            <div>[ {{completecount.0.0}} ]</div>
+          
+        </a>
+    </div>
+
+    <div class="col-md-3 col-sm-3 col-xs-6">
+        <a data-toggle="tooltip" title="Total Cancel Booking" class="well top-block" href="/admin/cancelbooking">
+            <i class="glyphicon glyphicon-remove-circle"></i>
+
+            <div>Cancel Booking</div>
+            <div>[ {{cancelcount.0.0}} ]</div>
+           
+        </a>
+    </div>
+
+    <div class="col-md-3 col-sm-3 col-xs-6">
+        <a data-toggle="tooltip" title="Total Payment" class="well top-block" href="/admin/payment">
+            <i class="glyphicon glyphicon-qrcode"></i>
+
+            <div>Payment</div>
+            <div>[ {{paymentcount.0.0}} ]</div>
+          
+        </a>
+    </div>
+
+</div>
+
+<div>
+    <ul class="breadcrumb">
+        
+        <li>
+            <a href="#">User Information</a>
+        </li>
+    </ul>
+</div>
+
+<div class=" row">
+    
+
+    <div class="col-md-3 col-sm-3 col-xs-6">
+        <a data-toggle="tooltip" title="Total User" class="well top-block" href="/admin/user">
+            <i class=" glyphicon glyphicon-user"></i>
+
+            <div>User</div>
+            <div>[ {{usercount.0.0}} ]</div>
+           
+        </a>
+    </div>
+
+    
+
+</div>
+
+
+<div>
+    <ul class="breadcrumb">
+        
+        <li>
+            <a href="#">Service Information</a>
+        </li>
+    </ul>
+</div>
+
+<div class=" row">
+   
+
+    <div class="col-md-3 col-sm-3 col-xs-6">
+        <a data-toggle="tooltip" title="Total Category" class="well top-block" href="/admin/category">
+            <i class="glyphicon glyphicon-list"></i>
+
+            <div>Category</div>
+            <div>[ {{catcount.0.0}} ]</div>
+           
+        </a>
+    </div>
+
+
+<div class="col-md-3 col-sm-3 col-xs-6">
+    <a data-toggle="tooltip" title="Total Category" class="well top-block" href="/admin/subcategory">
+        <i class="glyphicon glyphicon-list"></i>
+
+        <div>Sub Category</div>
+        <div>[ {{subcount.0.0}} ]</div>
+       
+    </a>
+</div>
+<div class="col-md-3 col-sm-3 col-xs-6">
+    <a data-toggle="tooltip" title="Total Category" class="well top-block" href="/admin/product">
+        <i class="glyphicon glyphicon-list"></i>
+
+        <div>Product</div>
+        <div>[ {{productcount.0.0}} ]</div>
+       
+    </a>
+</div>
+</div>
+
+<div>
+    <ul class="breadcrumb">
+        
+        <li>
+            <a href="#">Other Information</a>
+        </li>
+    </ul>
+</div>   
+
+<div class=" row">
+<div class="col-md-3 col-sm-3 col-xs-6">
+        <a data-toggle="tooltip" title="Total Area" class="well top-block" href="/admin/city">
+            <i class="glyphicon glyphicon-map-marker"></i>
+
+            <div>City</div>
+            <div>[ {{citycount.0.0}} ]</div>
+           
+        </a>
+    </div>
+
+    <div class="col-md-3 col-sm-3 col-xs-6">
+        <a data-toggle="tooltip" title="Total Show Feedback" class="well top-block" href="/admin/feedback">
+            <i class=" glyphicon glyphicon-eye-open"></i>
+
+            <div>Feedback</div>
+            <div>[ {{feedbackcount.0.0}} ]</div>
+           
+        </a>
+    </div>
+
+    
+</div>
+
+<!--end-->
+
+
+   <!-- content ends -->
+    </div><!--/#content.col-md-0-->
+</div><!--/fluid-row-->
+
+    
+    <hr>
+
+    
+    <footer class="row">
+        {% include 'footer.html' %}
+        </footer>
+
+</div><!--/.fluid-container-->
+
+<!-- external javascript -->
+{% include 'script.html' %}
+
+</body>
+</html>
