@@ -26,6 +26,8 @@
             My Order
             {% elif request.path == "/ucart" %}
             My Cart
+            {% elif request.path == "/ubills" %}
+            My Bills
             {% endif %}
         </h2>
         <ol class="breadcrumb">
@@ -53,6 +55,8 @@
                 Order
                 {% elif request.path == "/ucart" %}
                 Cart
+                {% elif request.path == "/ubills" %}
+                Bills
                 {% endif %}
             </li>
         </ol>

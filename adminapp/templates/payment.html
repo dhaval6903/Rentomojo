@@ -77,9 +77,8 @@
         </td>
         <td class="center">{{row.5|date:'Y-m-d H:i:s'}}</td>
         <td class="center">
-            <a class="btn btn-danger" href="/admin/payment?payment_del={{row.0}}" onclick="return confirm('Are you sure you want to Delete..?');">
+            <a class="btn btn-danger" title="Delete" href="/admin/payment?payment_del={{row.0}}" onclick="return confirm('Are you sure you want to Delete..?');">
                 <i class="glyphicon glyphicon-trash icon-white"></i>
-                Delete
             </a>
         </td>
     </tr>

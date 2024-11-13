@@ -556,5 +556,27 @@ def ucart(request):
         print("Internal Error")
     except:
         print("Error returned") 
+        
+        
+def ubills(request):
+    try:
+        city_data = city_dropdown()
+        # username = request.session["userid"]
+        # selcart = "SELECT * FROM booking_tb,product_tb WHERE booking_tb.p_id = product_tb.p_id and booking_tb.b_status = 'Pending' and booking_tb.b_duestatus = 'Active' and booking_tb.u_id = '"+str(username)+"' order by b_id desc " 
+
+        # mydb = getdb()
+        # mycursor = mydb.cursor()
+        # mycursor.execute(selcart)
+        # cart_data = mycursor.fetchall()
+
+        alldata = {
+            # 'cart_data':cart_data,
+            'city_data':city_data
+        }
+        return render(request,'ubills.html',alldata)
+    except NameError:
+        print("Internal Error")
+    except:
+        print("Error returned") 
 
      
