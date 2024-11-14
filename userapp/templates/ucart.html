@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-    <!-- Added by HTTrack -->
-    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
-    <!-- /Added by HTTrack -->
-    <head>
-        {% load static %} {% include 'uhead.html' %}
-    </head>
+<!-- Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<!-- /Added by HTTrack -->
 
-    <body>
-        {% include 'uheader.html' %} {% include 'ubanner.html' %}
-        <style>
-            .td-padding {
+<head>
+    {% load static %} {% include 'uhead.html' %}
+</head>
+
+<body>
+    {% include 'uheader.html' %} {% include 'ubanner.html' %}
+    <style>
+        .td-padding {
                 padding: 2px 6px;
                 font-size: 14px;
             }
@@ -22,105 +23,142 @@
                 width: 380px;
                 margin: 5px auto;
             }
-        </style>
+    </style>
 
-        <!--start-->
+    <!--start-->
 
-        <section class="inner-section checkout-part">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <form class="contact-form" enctype="multipart/form-data" method="post">
-                            {% csrf_token %}
-                            <div class="account-card">
-                                <div class="account-title"><h4>Cart Details</h4></div>
-                                <div class="account-content">
-                                    <div class="row">
-                                        <!-- Left side: Table -->
-                                        <div class="col-lg-8">
-                                            <div class="table-scroll" style="overflow-x: auto;">
-                                                <table class="table-list">
-                                                    <thead>
-                                                        <tr>
-                                                            <th scope="col" class="th-padding">#</th>
-                                                            <th scope="col" class="th-padding">Product</th>
-                                                            <th scope="col" class="th-padding">Image</th>
-                                                            <th scope="col" class="th-padding">Deposite</th>
-                                                            <th scope="col" class="th-padding">Rent</th>
-                                                            <th scope="col" class="th-padding">Quantity</th>
-                                                            <th scope="col" class="th-padding">Duration</th>
-                                                            <th scope="col" class="th-padding">Total</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        {% for cartdata in cart_data %}
-                                                        <tr>
-                                                            <td class="table-action td-padding">
-                                                                <a class="trash" href="/ucart?b_del={{cartdata.0}}" title="Remove Wishlist" onclick="return confirm('Are you sure you want to Delete..?');"><i class="icofont-trash"></i></a>
-                                                            </td>
-                                                            <td class="table-price td-padding">{{cartdata.20}}</td>
-                                                            <td class="table-price td-padding">
-                                                                <img style="height: 100px; width: 100px;" src="/media/{{cartdata.22}}" alt="product" />
-                                                            </td>
-                                                            <td class="table-price td-padding" data-deposit="{{cartdata.15}}">₹{{cartdata.15}}</td>
-                                                            <td class="table-price td-padding">₹{{cartdata.6}}/ Monthly</td>
-                                                            <td class="table-price td-padding">
-                                                                <div class="cart-action-group">
-                                                                    <div style="margin-left: auto; margin-right: auto;" class="product-action">
-                                                                        <button class="action-minus" title="Quantity Minus"><i class="icofont-minus"></i></button>
-                                                                        <input class="action-input" title="Quantity Number" type="text" name="quantity" value="{{cartdata.5}}" readonly/>
-                                                                        <button class="action-plus" title="Quantity Plus"><i class="icofont-plus"></i></button>
-                                                                    </div>
+    <section class="inner-section checkout-part">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <form class="contact-form" enctype="multipart/form-data" method="post">
+                        {% csrf_token %}
+                        <div class="account-card">
+                            <div class="account-title">
+                                <h4>Cart Details</h4></div>
+                            <div class="account-content">
+                                <div class="row">
+                                    <!-- Left side: Table -->
+                                    <div class="col-lg-8">
+                                        <div class="table-scroll" style="overflow-x: auto;">
+                                            <table class="table-list">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col" class="th-padding">#</th>
+                                                        <th scope="col" class="th-padding">Product</th>
+                                                        <th scope="col" class="th-padding">Image</th>
+                                                        <th scope="col" class="th-padding">Deposite</th>
+                                                        <th scope="col" class="th-padding">Rent</th>
+                                                        <th scope="col" class="th-padding">Quantity</th>
+                                                        <th scope="col" class="th-padding">Duration</th>
+                                                        <th scope="col" class="th-padding">Total</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% for cartdata in cart_data %}
+                                                    <tr>
+                                                        <td class="table-action td-padding">
+                                                            <a class="trash" href="/ucart?b_del={{cartdata.0}}" title="Remove Wishlist" onclick="return confirm('Do You Really Want To Remove This Item From The Cart?');"><i class="icofont-trash"></i></a>
+                                                        </td>
+                                                        <td class="table-price td-padding">{{cartdata.20}}</td>
+                                                        <td class="table-price td-padding">
+                                                            <img style="height: 100px; width: 100px;" src="/media/{{cartdata.22}}" alt="product" />
+                                                        </td>
+                                                        <td class="table-price td-padding" data-deposit="{{cartdata.15}}">₹{{cartdata.15}}</td>
+                                                        <td class="table-price td-padding">₹{{cartdata.6}}/ Monthly</td>
+                                                        <td class="table-price td-padding">
+                                                            <div class="cart-action-group">
+                                                                <div style="margin-left: auto; margin-right: auto;" class="product-action">
+                                                                   {% if cartdata.5 > 1 %}
+                                                                    <a class="action-minus" href="/ucart?cart_id={{cartdata.0}}&status=minus" title="Quantity Minus" style="
+                                                                                display: inline-block;
+                                                                                width: 30px;
+                                                                                height: 27px;
+                                                                                background-color: #e8e8e8;
+                                                                                color: #39404a;
+                                                                                text-align: center;
+                                                                                text-decoration: none;
+                                                                                border-radius: 5px;
+                                                                                font-size: 16px;
+                                                                                transition: background-color 0.3s, color 0.3s;
+                                                                            " onmouseover="this.style.backgroundColor='#de3326'; this.style.color='white';" onmouseout="this.style.backgroundColor='#e8e8e8'; this.style.color='#39404a';">
+                                                                        <i class="icofont-minus"></i>
+                                                                    </a>
+                                                                    {% endif %}
+                                                                    <input class="action-input" style="background-color: #e8e8e8; width: 30px; height: 27px;" title="Quantity Number" type="text" name="quantity" value="{{cartdata.5}}" readonly />
+
+                                                                    <a class="action-plus" href="/ucart?cart_id={{cartdata.0}}&status=plus" title="Quantity plus" style="
+                                                                                display: inline-block;
+                                                                                width: 30px;
+                                                                                height: 27px;
+                                                                                background-color: #e8e8e8;
+                                                                                color: #39404a;
+                                                                                text-align: center;
+                                                                                text-decoration: none;
+                                                                                border-radius: 5px;
+                                                                                font-size: 16px;
+                                                                                transition: background-color 0.3s, color 0.3s;
+                                                                            " onmouseover="this.style.backgroundColor='#de3326'; this.style.color='white';" onmouseout="this.style.backgroundColor='#e8e8e8'; this.style.color='#39404a';">
+                                                                        <i class="icofont-plus"></i>
+                                                                    </a>
                                                                 </div>
-                                                            </td>
-                                                            <td class="table-price td-padding">{{cartdata.10}} Month</td>
-                                                            <td class="table-price td-padding" data-total="{{cartdata.7}}">₹{{cartdata.7}}/ Monthly</td>
-                                                        </tr>
-                                                        {% endfor %}
-                                                    </tbody>
-                                                </table>
+                                                            </div>
+                                                        </td>
+                                                        
+                                                        <td class="table-price td-padding">{{cartdata.10}} Month</td>
+                                                        <td class="table-price td-padding" data-total="{{cartdata.7}}">₹{{cartdata.7}}/ Monthly</td>
+                                                    </tr>
+                                                    {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4">
+                                        <div class="checkout-charge">
+                                            <ul>
+                                                <li style="padding: 10px 20px;"><span>Total Rent</span><span id="totalRent">₹0</span></li>
+                                                <li style="padding: 10px 20px;"><span>Delivery fee</span><span>₹0</span></li>
+                                                <li style="padding: 10px 20px;"><span>Total Deposite</span><span id="totalDeposit">₹0</span></li>
+                                                <li style="padding: 10px 20px;">
+                                                    <span>GST<small>(18%)</small></span><span id="gst">₹0</span>
+                                                </li>
+                                                <li style="padding: 10px 20px;"><span>Payable Amount</span><span id="payAmount">₹0</span></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="form-cont" style="margin-top: 15px;">
+                                        <div class="col-md-6 col-lg-12">
+                                            <div class="form-group">
+                                                <label class="form-label">Shipping Address</label>
+                                                <textarea class="form-control" rows="4" id="b_shippingadd" name="b_shippingadd" placeholder="Enter your Shipping Address" required></textarea>
                                             </div>
                                         </div>
 
-                                        <div class="col-lg-4">
-                                            <div class="checkout-charge">
-                                                <ul>
-                                                    <li style="padding: 10px 20px;"><span>Total Rent</span><span id="totalRent">₹0</span></li>
-                                                    <li style="padding: 10px 20px;"><span>Delivery fee</span><span>₹0</span></li>
-                                                    <li style="padding: 10px 20px;"><span>Total Deposite</span><span id="totalDeposit">₹0</span></li>
-                                                    <li style="padding: 10px 20px;">
-                                                        <span>GST<small>(18%)</small></span><span id="gst">₹0</span>
-                                                    </li>
-                                                    <li style="padding: 10px 20px;"><span>Payable Amount</span><span id="payAmount">₹0</span></li>
-                                                </ul>
+                                        <div class="col-md-6 col-lg-12">
+                                            <div class="form-group">
+                                                <label class="form-label">Pincode</label>
+                                                <input class="form-control" id="b_pincode" name="b_pincode" placeholder="Enter your pincode" type="text" required />
                                             </div>
                                         </div>
-                                        <div class="form-cont" style="margin-top: 15px;">
-                                            <div class="col-md-6 col-lg-12">
-                                                <div class="form-group">
-                                                    <label class="form-label">Shipping Address</label>
-                                                    <textarea class="form-control" rows="4" id="b_shippingadd" name="b_shippingadd" placeholder="Enter your Shipping Address" required></textarea>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-6 col-lg-12">
-                                                <div class="form-group"><label class="form-label">Pincode</label><input class="form-control" id="b_pincode" name="b_pincode" placeholder="Enter your pincode" type="text" required/></div>
-                                            </div>
-                                            <div class="checkout-check" style="margin-top: 0px;">
-                                                <input type="checkbox" id="checkout-check" required/><label for="checkout-check">By making this purchase you agree to our <a style="color: red; margin-left: 3px;">Terms and Conditions</a>.</label>
-                                            </div>
-                                            <div class="checkout-proced"><button type="submit" class="btn btn-inline">Proceed to Checkout</button></div>
+                                        <div class="checkout-check" style="margin-top: 0px;">
+                                            <input type="checkbox" id="checkout-check" required />
+                                            <label for="checkout-check">By making this purchase you agree to our <a style="color: red; margin-left: 3px;">Terms and Conditions</a>.</label>
+                                        </div>
+                                        <div class="checkout-proced">
+                                            <button type="submit" class="btn btn-inline">Proceed to Checkout</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </form>
-                    </div>
+                        </div>
+                    </form>
                 </div>
             </div>
-        </section>
-        <script>
-            document.addEventListener("DOMContentLoaded", function () {
+        </div>
+    </section>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
                 let totalRent = 0;
                 let totalDeposit = 0;
 
@@ -147,16 +185,17 @@
                 document.querySelector("#gst").textContent = "₹" + gst.toFixed(2);
                 document.querySelector("#payAmount").textContent = "₹" + payAmount.toFixed(2);
             });
-        </script>
+    </script>
 
-        <!--End-->
-        <!-- Start of Footer section
+    <!--End-->
+    <!-- Start of Footer section
       ============================================= -->
-        {% include 'ufooter.html' %}
-        <!-- End of Footer section
+    {% include 'ufooter.html' %}
+    <!-- End of Footer section
          ============================================= -->
 
-        <!-- For Js Library -->
-        {% include 'uscript.html' %}
-    </body>
+    <!-- For Js Library -->
+    {% include 'uscript.html' %}
+</body>
+
 </html>
