@@ -1,8 +1,7 @@
 {% load static %}
 
-<section
-      class="inner-section single-banner" style="background: url(static/images/banner.jpg) no-repeat center;">
-      <div class="container">
+<section class="inner-section single-banner" style="background: url(static/images/banner.jpg) no-repeat center;">
+    <div class="container">
         <h2>
             {% if request.path == "/ucontactus" %}
             Contact Us
@@ -31,7 +30,7 @@
             {% endif %}
         </h2>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item" style="color:white;font-size: 20px;"><b><a href="/">Home</a> &nbsp/ &nbsp</b></li>
+            <li class="breadcrumb-item" style="color:white;font-size: 20px;"><b><a href="/">Home</a> &nbsp;/ &nbsp;</b></li>
             <li class="active" aria-current="page" style="color:white;font-size: 20px;font-weight: bold;">
                 {% if request.path == "/ucontactus" %}
                 Contact
@@ -61,4 +60,4 @@
             </li>
         </ol>
     </div>
-          </section>
+</section>

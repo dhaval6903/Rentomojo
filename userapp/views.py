@@ -229,12 +229,8 @@ def usignin(request):
 
 def usignout(request):
     try:
-    
-            #variable decleration
             username = request.session["userid"]
             cdate = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-
-            #insert query
 
             ins = "UPDATE `user_tb` set `u_udate` = '"+cdate+"' where u_id = '"+str(username)+"'"
 
@@ -388,7 +384,6 @@ def uforgotpassword(request):
             udata = mycursor.fetchall()
 
             if len(udata) > 0:
-                
                 alldata = {
                     'msg':msg,
                     'udata':udata,
@@ -398,10 +393,8 @@ def uforgotpassword(request):
                 return render(request,'uforgotpassword.html',alldata)
                 
             else:
-                
                 msg = " Sorry This Contact Is Not Registered...!" 
-                
-
+     
                 alldata = {
                     'msg':msg,
                     'city_data' :city_data
@@ -432,7 +425,6 @@ def uproductdetails(request):
             
             if city_id is not None:
                 query += " AND product_tb.c_id = '" + str(city_id) + "'"
-                
                 query += " ORDER BY p_id desc"
                 
                 mydb = getdb()
@@ -524,8 +516,6 @@ def ubooking(request):
         mycursor.execute(selbooking)
         booking_data = mycursor.fetchall()
 
-
-        
         alldata = {
             'booking_data':booking_data,
             'city_data':city_data
@@ -535,134 +525,6 @@ def ubooking(request):
         print("Internal Error")
     except:
         print("Error returned") 
-
-# def ucart(request):
-#     try:
-#         city_data = city_dropdown()
-#         username = request.session["userid"]
-#         selcart = "SELECT * FROM booking_tb,product_tb WHERE booking_tb.p_id = product_tb.p_id and booking_tb.b_status = 'Cart' and booking_tb.b_duestatus = 'Active' and booking_tb.u_id = '"+str(username)+"' order by b_id desc " 
-
-#         mydb = getdb()
-#         mycursor = mydb.cursor()
-#         mycursor.execute(selcart)
-#         cart_data = mycursor.fetchall()
-
-#         alldata = {
-#             'cart_data':cart_data,
-#             'city_data':city_data
-#         }
-#         return render(request,'ucart.html',alldata)
-#     except NameError:
-#         print("Internal Error")
-#     except:
-#         print("Error returned") 
-
-# def ucart(request):
-#     try:
-#         if request.POST:
-#             city_data = city_dropdown()
-#             username = request.session["userid"]
-#             b_shippingadd = request.POST.get('b_shippingadd')
-#             b_pincode = request.POST.get('b_pincode')
-#             cdate = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-
-#             selcart = "SELECT * FROM booking_tb, product_tb WHERE booking_tb.p_id = product_tb.p_id AND booking_tb.b_status = 'Cart' AND booking_tb.b_duestatus = 'Active' AND booking_tb.u_id = '"+str(username)+"' ORDER BY b_id DESC"
-            
-#             mydb = getdb()
-#             mycursor = mydb.cursor()
-#             mycursor.execute(selcart)
-#             cart_data = mycursor.fetchall()
-            
-#             if len(cart_data) > 0:
-#                 for cartdata in cart_data:
-#                     p_id = cartdata[2] 
-#                     b_quantity = cartdata[5] 
-#                     b_price = cartdata[6] 
-#                     b_total = cartdata[7] 
-#                     b_duration = cartdata[10] 
-#                     b_deposite = cartdata[15]  
-#                     b_duestatus = 'Active'  
-#                     b_status = 'Pending'  
-                            
-#                     b_startdate = datetime.now().strftime("%Y-%m-%d")
-#                     b_enddate = (datetime.now() + timedelta(days=int(b_duration) * 30)).strftime("%Y-%m-%d")
-                    
-#                     insbook = "INSERT INTO booking_tb (u_id,p_id,b_shippingadd,b_pincode,b_quantity,b_price,b_total, b_startdate, b_enddate, b_duration, b_duestatus, b_status, b_cdate, b_udate, b_deposite) VALUES ('"+str(username)+"','"+str(p_id)+"','"+str(b_shippingadd)+"','"+str(b_pincode)+"','"+str(b_quantity)+"','"+str(b_price)+"','"+str(b_total)+"','"+b_startdate+"','"+b_enddate+"','"+str(b_duration)+"','"+str(b_duestatus)+"','"+str(b_status)+"', '"+cdate+"','"+cdate+"','"+str(b_deposite)+"')"
-#                     mycursor.execute(insbook)
-#                     mydb.commit()  
-#                     last_b_id = mycursor.lastrowid
-                    
-                    
-#                     pay_type = 'Deposite'  
-#                     pay_status = 'Failed' 
-#                     ins_payment = "INSERT INTO payment_tb (b_id, b_type, p_amount, p_status, p_cdate) VALUES ('"+str(last_b_id)+"','"+str(pay_type)+"','"+str(b_deposite)+"','"+str(pay_status)+"','"+cdate+"')"
-#                     mycursor.execute(ins_payment)
-#                     mydb.commit()
-                    
-#                     print(ins_payment)
-                      
-#             return redirect("/ubooking")
-        
-#         elif request.GET.get("b_del") !=None:
-#             b_del = request.GET.get("b_del")
-#             Delbook = "DELETE from `booking_tb` where booking_tb.b_id = '"+str(b_del)+"'"
-
-#             mydb = getdb()
-#             mycursor = mydb.cursor()
-#             mycursor.execute(Delbook)
-#             mydb.commit()
-#             return redirect("/ucart")        
-        
-#         elif request.GET.get("status") == "plus":
-#                 cart_id = request.GET.get("cart_id")
-
-#                 selplus = "SELECT * FROM booking_tb WHERE booking_tb.b_status = 'Cart' AND booking_tb.b_id = '"+str(cart_id)+"'"
-                
-#                 mydb = getdb()
-#                 mycursor = mydb.cursor()
-#                 mycursor.execute(selplus)
-#                 plus_data = mycursor.fetchall()
-                
-#                 print(selplus)
-                
-#                 if len(plus_data) > 0:
-#                     for plusdata in plus_data:
-#                         b_quantity = plusdata[5] 
-#                         b_price = plusdata[6] 
-#                         b_total = plusdata[7] 
-#                         b_duration = plusdata[10]
-#                         cdate = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-
-                   
-#                         new_quantity = b_quantity + 1
-#                         new_total = b_price * b_duration * new_quantity
-
-
-#                         plus = "update booking_tb set  b_quantity = '"+str(new_quantity)+"' and b_total = '"+str(new_total)+"' and b_udate = '"+str(cdate)+"' where booking_tb.b_id = '"+str(cart_id)+"'"
-#                         mycursor.execute(plus)
-#                         mydb.commit()
-
-#                     return redirect("/ucart")
-        
-#         else:
-#             city_data = city_dropdown()
-#             username = request.session["userid"]
-#             selcart = "SELECT * FROM booking_tb, product_tb WHERE booking_tb.p_id = product_tb.p_id AND booking_tb.b_status = 'Cart' AND booking_tb.b_duestatus = 'Active' AND booking_tb.u_id = '"+str(username)+"' ORDER BY b_id DESC"
-
-#             mydb = getdb()
-#             mycursor = mydb.cursor()
-#             mycursor.execute(selcart)
-#             cart_data = mycursor.fetchall()
-
-#             alldata = {
-#                 'cart_data': cart_data,
-#                 'city_data': city_data
-#             }
-#             return render(request, 'ucart.html', alldata)
-#     except NameError:
-#         print("Internal Error")
-#     except:
-#         print("Error returned") 
 
 def ucart(request):
     try:
@@ -680,7 +542,6 @@ def ucart(request):
             mycursor.execute(selcart)
             cart_data = mycursor.fetchall()
             
-            
             if len(cart_data) > 0:
                 for cartdata in cart_data:
                     p_id = cartdata[2] 
@@ -690,8 +551,7 @@ def ucart(request):
                     b_duration = cartdata[10] 
                     b_deposite = cartdata[15]  
                     b_duestatus = 'Active'  
-                    b_status = 'Pending'  
-                            
+                    b_status = 'Pending'      
                     b_startdate = datetime.now().strftime("%Y-%m-%d")
                     b_enddate = (datetime.now() + timedelta(days=int(b_duration) * 30)).strftime("%Y-%m-%d")
                     
@@ -699,16 +559,12 @@ def ucart(request):
                     mycursor.execute(insbook)
                     mydb.commit()  
                     last_b_id = mycursor.lastrowid
-                    
-                    
+        
                     pay_type = 'Deposite'  
                     pay_status = 'Failed' 
                     ins_payment = "INSERT INTO payment_tb (b_id, b_type, p_amount, p_status, p_cdate) VALUES ('"+str(last_b_id)+"','"+str(pay_type)+"','"+str(b_deposite)+"','"+str(pay_status)+"','"+cdate+"')"
                     mycursor.execute(ins_payment)
                     mydb.commit()
-                    
-                   
-                      
             return redirect("/ubooking")
         
         elif request.GET.get("b_del") != None:
@@ -723,7 +579,6 @@ def ucart(request):
         
         elif request.GET.get("status") == "plus":
             cart_id = request.GET.get("cart_id")
-
             selplus = "SELECT * FROM booking_tb WHERE booking_tb.b_status = 'Cart' AND booking_tb.b_id = '"+str(cart_id)+"'"
             
             mydb = getdb()
@@ -786,8 +641,6 @@ def ucart(request):
             mycursor = mydb.cursor()
             mycursor.execute(selcart)
             cart_data = mycursor.fetchall()
-
-
 
             alldata = {
                 'cart_data': cart_data,

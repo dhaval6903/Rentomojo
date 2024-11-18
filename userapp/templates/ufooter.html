@@ -2,101 +2,104 @@
 
 <footer class="footer-part">
     <div class="container">
-       <div class="row">
-          <div class="col-sm-6 col-xl-4">
-             <div class="footer-widget">
-                <a class="footer-logo" href="#"><img src="static/images/logo-3.png" alt="logo"></a>
-                <p class="footer-desc">At Rentomojo, we’re all about flexibility, convenience, and smart living. Whether you’re moving to a new city or refreshing your space, buying furniture and appliances can feel like a burden. That’s where we come in, with our flexible rental plans and hassle-free delivery.</p>
-                <ul class="footer-social">
-                   <li><a target=_blank class="icofont-facebook" href="https://www.facebook.com/login/"></a></li>
-                   <li><a target=_blank class="icofont-twitter" href="https://x.com/i/flow/login"></a></li>
-                   <li><a target=_blank class="icofont-linkedin" href="https://www.linkedin.com/login"></a></li>
-                   <li><a target=_blank class="icofont-instagram" href="https://www.instagram.com/"></a></li>
-                   <li><a target=_blank class="icofont-pinterest" href="https://in.pinterest.com/login/"></a></li>
-                </ul>
-             </div>
-          </div>
-          <div class="col-sm-6 col-xl-4">
-             <div class="footer-widget contact">
-                <h3 class="footer-title">contact us</h3>
-                <ul class="footer-contact">
-                   <li>
-                      <i class="icofont-ui-email"></i>
-                      <p><span>ccca_bca@yahoo.com</span></p>
-                   </li>
-                   <li>
-                      <i class="icofont-ui-touch-phone"></i>
-                      <p><span>+(079)23241533</span></p>
-                   </li>
-                   <li>
-                      <i class="icofont-location-pin"></i>
-                      <p>0pp.Central Bus Depot,
-                        Sector-7,
-                         Gandhinagar - 382007</p>
-                   </li>
-                </ul>
-             </div>
-          </div>
-          <div class="col-sm-6 col-xl-4">
-             <div class="footer-widget">
-                <h3 class="footer-title">quick Links</h3>
-                <div class="footer-links">
-                  {% if request.session.userid == None %}
-                   <ul>
-                      <li><a href="/">Home</a></li>
-                      <li><a href="/usignup">Sign Up</a></li>
-                      <li><a href="/usignin">Sign In</a></li>
-                   </ul>
-                   <ul>
-                      <li><a href="/uproduct">Products</a></li>
-                      <li><a href="/uaboutus">About Us</a></li>
-                      <li><a href="/ucontactus">Contact Us</a></li>
-                   </ul>
-                   {% else %}
-                   <ul>
-                     <li><a href="/">Home</a></li>
-                     <li><a href="/uproduct">Products</a></li>
-                     <li><a href="/uprofile">Profile</a></li>
-                     <li><a href="/ucart">My Cart</a></li>
-                     <li><a href="/ubooking">My Order</a></li>
-                     
-                  </ul>
-                  <ul>
-                     <li><a href="/ubills">My Bills</a></li>
-                     <li><a href="/ucontactus">Contact Us</a></li>
-                     <li><a href="/uaboutus">About Us</a></li>
-                     <li><a href="#" onclick="confirmSignOut()">Sign Out</a></li>
-                  </ul>
-                  {% endif %}
+        <div class="row">
+            <div class="col-sm-6 col-xl-4">
+                <div class="footer-widget">
+                    <a class="footer-logo" href="#"><img src="static/images/logo-3.png" alt="logo" /></a>
+                    <p class="footer-desc">
+                        At Rentomojo, we’re all about flexibility, convenience, and smart living. Whether you’re moving to a new city or refreshing your space, buying furniture and appliances can feel like a burden. That’s where we come in,
+                        with our flexible rental plans and hassle-free delivery.
+                    </p>
+                    <ul class="footer-social">
+                        <li><a target="_blank" class="icofont-facebook" href="https://www.facebook.com/login/"></a></li>
+                        <li><a target="_blank" class="icofont-twitter" href="https://x.com/i/flow/login"></a></li>
+                        <li><a target="_blank" class="icofont-linkedin" href="https://www.linkedin.com/login"></a></li>
+                        <li><a target="_blank" class="icofont-instagram" href="https://www.instagram.com/"></a></li>
+                        <li><a target="_blank" class="icofont-pinterest" href="https://in.pinterest.com/login/"></a></li>
+                    </ul>
                 </div>
-             </div>
-          </div>
-       </div>
-       <div class="row">
-          <div class="col-12">
-             <div class="footer-bottom">
-                <p class="footer-copytext">&copy; All Copyrights Reserved by <a href="">Rentomojo</a> | Design by: Electro Web Solution</p>
-                <div class="footer-card"><a href="#"><img src="static/images/payment/jpg/01.jpg" alt="payment"></a><a href="#"><img src="static/images/payment/jpg/02.jpg" alt="payment"></a><a href="#"><img src="static/images/payment/jpg/03.jpg" alt="payment"></a><a href="#"><img src="static/images/payment/jpg/04.jpg" alt="payment"></a></div>
-             </div>
-          </div>
-       </div>
+            </div>
+            <div class="col-sm-6 col-xl-4">
+                <div class="footer-widget contact">
+                    <h3 class="footer-title">contact us</h3>
+                    <ul class="footer-contact">
+                        <li>
+                            <i class="icofont-ui-email"></i>
+                            <p><span>ccca_bca@yahoo.com</span></p>
+                        </li>
+                        <li>
+                            <i class="icofont-ui-touch-phone"></i>
+                            <p><span>+(079)23241533</span></p>
+                        </li>
+                        <li>
+                            <i class="icofont-location-pin"></i>
+                            <p>0pp.Central Bus Depot, Sector-7, Gandhinagar - 382007</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-6 col-xl-4">
+                <div class="footer-widget">
+                    <h3 class="footer-title">quick Links</h3>
+                    <div class="footer-links">
+                        {% if request.session.userid == None %}
+                        <ul>
+                            <li><a href="/">Home</a></li>
+                            <li><a href="/usignup">Sign Up</a></li>
+                            <li><a href="/usignin">Sign In</a></li>
+                        </ul>
+                        <ul>
+                            <li><a href="/uproduct">Products</a></li>
+                            <li><a href="/uaboutus">About Us</a></li>
+                            <li><a href="/ucontactus">Contact Us</a></li>
+                        </ul>
+                        {% else %}
+                        <ul>
+                            <li><a href="/">Home</a></li>
+                            <li><a href="/uproduct">Products</a></li>
+                            <li><a href="/uprofile">Profile</a></li>
+                            <li><a href="/ucart">My Cart</a></li>
+                            <li><a href="/ubooking">My Order</a></li>
+                        </ul>
+                        <ul>
+                            <li><a href="/ubills">My Bills</a></li>
+                            <li><a href="/ucontactus">Contact Us</a></li>
+                            <li><a href="/uaboutus">About Us</a></li>
+                            <li><a href="#" onclick="confirmSignOut()">Sign Out</a></li>
+                        </ul>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="footer-bottom">
+                    <p class="footer-copytext">&copy; All Copyrights Reserved by <a href="">Rentomojo</a> | Design by: Electro Web Solution</p>
+                    <div class="footer-card">
+                        <a href="#"><img src="static/images/payment/jpg/01.jpg" alt="payment" /></a><a href="#"><img src="static/images/payment/jpg/02.jpg" alt="payment" /></a>
+                        <a href="#"><img src="static/images/payment/jpg/03.jpg" alt="payment" /></a><a href="#"><img src="static/images/payment/jpg/04.jpg" alt="payment" /></a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
- </footer>
- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-   <script>
-          function confirmSignOut() {
-              Swal.fire({
-                  title: 'Are you sure?',
-                  text: "Are you sure you want to Sign Out?",
-                  showCancelButton: true,
-                  confirmButtonColor: '#de3326',
-                  cancelButtonColor: '#119744',
-                  confirmButtonText: 'Yes, sign out!',
-                  cancelButtonText: 'Cancel'
-              }).then((result) => {
-                  if (result.isConfirmed) {
-                      window.location.href = '/usignout';
-                  }
-              });
-          }
-   </script>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    function confirmSignOut() {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "Are you sure you want to Sign Out?",
+            showCancelButton: true,
+            confirmButtonColor: "#de3326",
+            cancelButtonColor: "#119744",
+            confirmButtonText: "Yes, sign out!",
+            cancelButtonText: "Cancel",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "/usignout";
+            }
+        });
+    }
+</script>

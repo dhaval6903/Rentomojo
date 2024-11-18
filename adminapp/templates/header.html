@@ -27,7 +27,7 @@
         <ul class="dropdown-menu">
             <li><a href="#"><img src='{% static "img/" %}{{request.session.img}}' style="width: 100px; height: 100px;margin-left: 10px;" /></a></li>
             <li class="divider"></li>
-            <li style="text-align:center;"><a href="/admin/logout">Logout</a></li>
+            <li style="text-align:center;"><a href="/admin/logout" onclick="return confirm('Are You Sure You Want To LogOut?');">Logout</a></li>
         </ul>
     </div>
     <!-- user dropdown ends -->

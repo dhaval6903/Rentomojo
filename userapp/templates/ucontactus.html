@@ -1,85 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
-   
-   <!-- Added by HTTrack -->
-   <meta http-equiv="content-type" content="text/html;charset=utf-8" />
-   <!-- /Added by HTTrack -->
-   <head>
-      {% load static %}
-      {% include 'uhead.html' %}
-   </head>
-   
-   <body>
-      {% include 'uheader.html' %}
-      {% include 'ubanner.html' %}
-      <!--start-->
-      
-      <section class="inner-section contact-part">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-lg-4">
-                    <div class="contact-card" style="height:300px;"><i class="icofont-location-pin"></i>
-                        <h4>head office</h4>
-                        <p>0pp.Central Bus Depot, Sector-7, Gandhinagar - 382007</p>
+    <!-- Added by HTTrack -->
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <!-- /Added by HTTrack -->
+    <head>
+        {% load static %} {% include 'uhead.html' %}
+    </head>
+
+    <body>
+        {% include 'uheader.html' %} {% include 'ubanner.html' %}
+        <!--start-->
+
+        <section class="inner-section contact-part">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-lg-4">
+                        <div class="contact-card" style="height: 300px;">
+                            <i class="icofont-location-pin"></i>
+                            <h4>head office</h4>
+                            <p>0pp.Central Bus Depot, Sector-7, Gandhinagar - 382007</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="contact-card active" style="height: 300px;">
+                            <i class="icofont-phone"></i>
+                            <h4>phone number</h4>
+                            <p>
+                                <a href="#">+(079)23241533 <span>(toll free)</span></a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="contact-card" style="height: 300px;">
+                            <i class="icofont-email"></i>
+                            <h4>Support mail</h4>
+                            <p><a href="#">ccca_bca@yahoo.com</a></p>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="contact-card active" style="height:300px;"><i class="icofont-phone"></i>
-                        <h4>phone number</h4>
-                        <p><a href="#">+(079)23241533 <span>(toll free)</span></a></p>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="contact-map">
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3666.8595762597038!2d72.64160467477589!3d23.211787609241686!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395c2bb47d07dc7f%3A0x99ec41d2f527b7c6!2sChaudhari%20College%20Of%20Education!5e0!3m2!1sen!2sin!4v1706100598312!5m2!1sen!2sin"
+                                style="border: 0;"
+                                allowfullscreen=""
+                                loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"
+                            ></iframe>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="contact-card" style="height:300px;"><i class="icofont-email"></i>
-                        <h4>Support mail</h4>
-                        <p><a href="#">ccca_bca@yahoo.com</a></p>
+                    <div class="col-lg-6">
+                        <form class="contact-form" method="post">
+                            {% csrf_token %}
+                            <h4>Drop Your Thoughts</h4>
+                            <div class="form-group">
+                                <div class="form-input-group"><input class="form-control" type="text" placeholder="Your Name" name="f_name" /><i class="icofont-user-alt-3"></i></div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-input-group"><input class="form-control" type="text" placeholder="Your Contact" name="f_contact" /><i class="icofont-phone"></i></div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="form-input-group"><textarea class="form-control" placeholder="Your Message" name="f_msg"></textarea><i class="icofont-paragraph"></i></div>
+                            </div>
+                            <button type="submit" class="form-btn-group"><i class="fas fa-envelope"></i><span>send message</span></button>
+                        </form>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="contact-map"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3666.8595762597038!2d72.64160467477589!3d23.211787609241686!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395c2bb47d07dc7f%3A0x99ec41d2f527b7c6!2sChaudhari%20College%20Of%20Education!5e0!3m2!1sen!2sin!4v1706100598312!5m2!1sen!2sin"  style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
-                </div>
-                <div class="col-lg-6">
-                    <form class="contact-form" method="post">
-                        
-                        {% csrf_token %}
-                        <h4>Drop Your Thoughts</h4>
-                        <div class="form-group">
-                            <div class="form-input-group"><input class="form-control" type="text"
-                                    placeholder="Your Name" name="f_name"><i class="icofont-user-alt-3"></i></div>
-                        </div>
-                        <div class="form-group">
-                            <div class="form-input-group"><input class="form-control" type="text"
-                                    placeholder="Your Contact" name="f_contact"><i class="icofont-phone"></i></div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <div class="form-input-group"><textarea class="form-control"
-                                    placeholder="Your Message" name="f_msg"></textarea><i class="icofont-paragraph"></i></div>
-                        </div><button type="submit" class="form-btn-group"><i class="fas fa-envelope"></i><span>send
-                                message</span></button>
-                    </form>
-                </div>
-            </div>
-           
-        </div>
-    </section>
-   
-     
+        </section>
 
-
-      <!--End-->
-      <!-- Start of Footer section
+        <!--End-->
+        <!-- Start of Footer section
       ============================================= -->
-      {% include 'ufooter.html' %}		
-      <!-- End of Footer section
-         ============================================= -->	
-   
-      <!-- For Js Library -->
-      {% include 'uscript.html' %}
-      
-      
-   </body>
-   
+        {% include 'ufooter.html' %}
+        <!-- End of Footer section
+         ============================================= -->
+
+        <!-- For Js Library -->
+        {% include 'uscript.html' %}
+    </body>
 </html>
