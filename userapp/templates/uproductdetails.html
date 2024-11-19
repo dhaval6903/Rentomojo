@@ -1,151 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
-   
-   <!-- Added by HTTrack -->
-   <meta http-equiv="content-type" content="text/html;charset=utf-8" />
-   <!-- /Added by HTTrack -->
-   <head>
-      {% load static %}
-      {% include 'uhead.html' %}
-   </head>
-   
-   <body>
-      {% include 'uheader.html' %}
-      {% include 'ubanner.html' %}
-      <!--start-->
+    <!-- Added by HTTrack -->
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <!-- /Added by HTTrack -->
+    <head>
+        {% load static %} {% include 'uhead.html' %}
+    </head>
 
-      <section class="inner-section">
-        <div class="container">
-            <div class="row">
-                {% for pdetailsdata in pdetails_data %}
-                <div class="col-lg-6">
-                    <div class="details-gallery">
-                        <div class="details-label-group"><label class="details-label new">{{pdetailsdata.19}}</label><label class="details-label off">{{pdetailsdata.26}}</label></div>
-                        <ul class="details-preview">
-                            <li><img style="height:635px;" src="/media/{{pdetailsdata.6}}" alt="product" /></li>
-                            <li><img style="height:635px;" src="/media/{{pdetailsdata.7}}" alt="product" /></li>
-                            <li><img style="height:635px;" src="/media/{{pdetailsdata.8}}" alt="product" /></li>
-                        </ul>
-                        <ul class="details-thumb">
-                            <li><img style="height:100px;width:100px;" src="/media/{{pdetailsdata.6}}" alt="product" /></li>
-                            <li><img style="height:100px;width:100px;" src="/media/{{pdetailsdata.7}}" alt="product" /></li>
-                            <li><img style="height:100px;width:100px;" src="/media/{{pdetailsdata.8}}" alt="product" /></li>
-                        </ul>
+    <body>
+        {% include 'uheader.html' %} {% include 'ubanner.html' %}
+        <!--start-->
+
+        <section class="inner-section">
+            <div class="container">
+                <div class="row">
+                    {% for pdetailsdata in pdetails_data %}
+                    <div class="col-lg-6">
+                        <div class="details-gallery">
+                            <div class="details-label-group"><label class="details-label new">{{pdetailsdata.19}}</label><label class="details-label off">{{pdetailsdata.26}}</label></div>
+                            <ul class="details-preview">
+                                <li><img style="height: 635px;" src="/media/{{pdetailsdata.6}}" alt="product" /></li>
+                                <li><img style="height: 635px;" src="/media/{{pdetailsdata.7}}" alt="product" /></li>
+                                <li><img style="height: 635px;" src="/media/{{pdetailsdata.8}}" alt="product" /></li>
+                            </ul>
+                            <ul class="details-thumb">
+                                <li><img style="height: 100px; width: 100px;" src="/media/{{pdetailsdata.6}}" alt="product" /></li>
+                                <li><img style="height: 100px; width: 100px;" src="/media/{{pdetailsdata.7}}" alt="product" /></li>
+                                <li><img style="height: 100px; width: 100px;" src="/media/{{pdetailsdata.8}}" alt="product" /></li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="details-content" style="height:635px;">
-                        <h2 class="details-name"><a>{{pdetailsdata.4}}</a></h2>
-                      <!--  <div class="details-meta">
+                    <div class="col-lg-6">
+                        <div class="details-content" style="height: 635px;">
+                            <h2 class="details-name"><a>{{pdetailsdata.4}}</a></h2>
+                            <!--  <div class="details-meta">
                             <p>Size:<span>{{pdetailsdata.9}}</span></p>
                             <p>Color:<a href="#">{{pdetailsdata.10}}</a></p>
                             <p>Material:<a href="#">{{pdetailsdata.11}}</a></p>
                         </div>-->
-                        <div class="details-rating">
-                            <i class="active icofont-star"></i><i class="active icofont-star"></i><i class="active icofont-star"></i><i class="active icofont-star"></i><i class="icofont-star"></i><a>(3 reviews)</a>
-                        </div>
-                       <!-- <div class="details-list-group">
+                            <div class="details-rating">
+                                <i class="active icofont-star"></i><i class="active icofont-star"></i><i class="active icofont-star"></i><i class="active icofont-star"></i><i class="icofont-star"></i><a>(3 reviews)</a>
+                            </div>
+                            <!-- <div class="details-list-group">
                             <label class="details-list-title">City:</label>
                             <ul class="details-tag-list">
                                 <li>{{pdetailsdata.31}}</li>
                             </ul>
                         </div>-->
-                        <h5 style="color: #2192ed;font-weight:bold;">100% Refundable deposit ₹{{pdetailsdata.17}}</h5><br>
-                        <h3 class="details-price">
-                            <del style="font-size:30px;">₹{{pdetailsdata.12}}</del><span style="color: green;font-size:30px;">₹{{pdetailsdata.13}}<small style="font-size:20px;"><b>/Monthly Rent</b></small></span>
-                        </h3>
+                            <h5 style="color: #2192ed; font-weight: bold;">100% Refundable deposit ₹{{pdetailsdata.17}}</h5>
+                            <br />
+                            <h3 class="details-price">
+                                <del style="font-size: 30px;">₹{{pdetailsdata.12}}</del>
+                                <span style="color: green; font-size: 30px;">
+                                    ₹{{pdetailsdata.13}}<small style="font-size: 20px;"><b>/Monthly Rent</b></small>
+                                </span>
+                            </h3>
 
-                        <div class="details-list-group">
-                            <label class="details-list-title">Other Benefits:</label>
-                            <ul class="details-tag-list" style="list-style-type: disc; padding-left: 10px;">
-                                <li>Free relocation</li>
-                                <li style="margin-left: 20px;">Free upgrades</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="details-list-group">
-                            <label class="details-list-title">Size:</label>
-                            <ul class="details-tag-list">
-                                <li>{{pdetailsdata.9}}</li>
-                            </ul>
-                        </div>
-                        <div class="details-list-group">
-                            <label class="details-list-title">Material:</label>
-                            <ul class="details-tag-list">
-                                <li>{{pdetailsdata.11}}</li>
-                            </ul>
-                        </div>
-                        <form method="post">
-                        <div class="details-list-group">
-                            <label class="details-list-title">Color:</label>
-                            <ul class="details-tag-list">
-                                <li style="width: max-content;">{{pdetailsdata.10}}</li>
-                               
-                                <!--<label class="details-list-title" ><span id="calculatedPrice" style="color:navy;border:2px solid navy; padding: 8px 11px;border-radius: 20%;margin-left:180px;"></span>&nbsp;&nbsp;&nbsp;&nbsp;Total</label>-->
-                                
-                                    
+                            <div class="details-list-group">
+                                <label class="details-list-title">Other Benefits:</label>
+                                <ul class="details-tag-list" style="list-style-type: disc; padding-left: 10px;">
+                                    <li>Free relocation</li>
+                                    <li style="margin-left: 20px;">Free upgrades</li>
                                 </ul>
-                                    
-                                <span id="calculatedPrice"  class="btn btn-outline" style="margin-left: 50%;width: -webkit-fill-available; display:none"></span>
                             </div>
-                       
-                        <input class="form-control" type="hidden" id="basePrice" value="{{pdetailsdata.13}}">
-                        
-                   
-                       <div class="details-action-group">
-                        <div class="details-wish wish">
-                            <select class="form-control center-dropdown" onchange="calculatePrice()" id="monthdrop" name="" style="text-align: center; text-align-last: center;cursor:pointer;" required>
-                                <option selected >Choose Tenure </option>
-                                <option value="3">3 Months</option>
-                                <option value="6">6 Months</option>
-                                <option value="11">11 Months</option>
-                                <option value="12">12 Months</option>
-                                <option value="24">24 Months</option>
-                                <option value="36">36 Months</option>
-                            </select>
-                        </div>
-                            {% if request.session.userid == None %}
-                            <a class="details-wish wish" href="/usignin">
-                                <i class="fas fa-shopping-cart"></i><span>Book Your Plan</span></a>
-                            {% else %}
-                            <a class="details-wish wish" href="/">
-                                <i class="fas fa-shopping-cart"></i><span>Book Your Plan</span></a>
-                            {% endif %}
+
+                            <div class="details-list-group">
+                                <label class="details-list-title">Size:</label>
+                                <ul class="details-tag-list">
+                                    <li>{{pdetailsdata.9}}</li>
+                                </ul>
+                            </div>
+                            <div class="details-list-group">
+                                <label class="details-list-title">Material:</label>
+                                <ul class="details-tag-list">
+                                    <li>{{pdetailsdata.11}}</li>
+                                </ul>
+                            </div>
+
+                            <div class="details-list-group">
+                                <label class="details-list-title">Color:</label>
+                                <ul class="details-tag-list">
+                                    <li style="width: max-content;">{{pdetailsdata.10}}</li>
+
+                                    <!--<label class="details-list-title" ><span id="calculatedPrice" style="color:navy;border:2px solid navy; padding: 8px 11px;border-radius: 20%;margin-left:180px;"></span>&nbsp;&nbsp;&nbsp;&nbsp;Total</label>-->
+                                </ul>
+
+                                <span id="calculatedPrice" class="btn btn-outline" style="margin-left: 50%; width: -webkit-fill-available; display: none;"></span>
+                            </div>
+                            <form enctype="multipart/form-data" method="post">
+                                {% csrf_token %}
+                                <div class="details-action-group">
+                                    <div class="details-wish wish">
+                                        <select class="form-control center-dropdown" onchange="calculatePrice()" id="monthdrop" name="durationdrop" style="text-align: center; text-align-last: center; cursor: pointer;" required>
+                                            <option selected>Choose Tenure </option>
+                                            <option value="1">1 Months</option>
+                                            <option value="3">3 Months</option>
+                                            <option value="6">6 Months</option>
+                                            <option value="11">11 Months</option>
+                                            <option value="12">12 Months</option>
+                                            <option value="24">24 Months</option>
+                                            <option value="36">36 Months</option>
+                                        </select>
+                                    </div>
+                                    <input class="form-control" type="hidden" id="basePrice" name="hprice" value="{{pdetailsdata.13}}" />
+                                    <input class="form-control" type="hidden" id="basePrice" name="hdeposite" value="{{pdetailsdata.17}}" />
+                                    <input class="form-control" type="hidden" id="calculatedPriceTextbox" name="hcalculate" placeholder="Calculated Price" readonly />
+                                    {% if request.session.userid == None %}
+                                    <a class="details-wish wish" href="/usignin"> <i class="fas fa-shopping-cart"></i><span>Book Your Plan</span></a>
+                                    {% else %}
+                                    <button class="product-add" title="Add to Cart" type="submit"><i class="fas fa-shopping-cart"></i><span>Book Your Plan</span></button>
+                                    {% endif %}
+                                </div>
+                            </form>
                         </div>
                     </div>
-                </div>
-                {% endfor %}
-            </form>
-            <script>
-                // Function to calculate the price based on selected tenure
-                function calculatePrice() {
-                    // Get the dropdown element and its selected value
-                    var selectedTenure = document.getElementById('monthdrop').value;
-                    
-                    // Get the base price value from the hidden input
-                    var basePrice = parseInt(document.getElementById('basePrice').value);
-                    
-                    // Get the calculatedPrice element
-                    var calculatedPriceElement = document.getElementById('calculatedPrice');
-                    
-                    // Check if a valid option is selected
-                    if (selectedTenure !== null && selectedTenure !== "") {
-                        // Calculate the price based on the selected tenure
-                        var calculatedPrice = selectedTenure * basePrice;
-                        
-                        // Display the calculated price in the label
-                        calculatedPriceElement.innerText = "Total : ₹" + calculatedPrice;
-                        // Show the calculated price
-                        calculatedPriceElement.style.display = "inline";
-                       
-                    } else {
-                        // Hide the calculated price if no valid option is selected
-                        calculatedPriceElement.style.display = "none";
-                        
-                    }
-                }
-            </script>
-          <!--  <script>
+                    {% endfor %}
+
+                    <script>
+                        // Function to calculate the price based on selected tenure
+                        function calculatePrice() {
+                            // Get the dropdown element and its selected value
+                            var selectedTenure = document.getElementById("monthdrop").value;
+
+                            // Get the base price value from the hidden input
+                            var basePrice = parseInt(document.getElementById("basePrice").value);
+
+                            // Get the calculatedPrice element
+                            var calculatedPriceElement = document.getElementById("calculatedPrice");
+
+                            // Get the second textbox to display the calculated price
+                            var calculatedPriceTextbox = document.getElementById("calculatedPriceTextbox");
+
+                            // Check if a valid option is selected
+                            if (selectedTenure !== null && selectedTenure !== "") {
+                                // Calculate the price based on the selected tenure
+                                var calculatedPrice = selectedTenure * basePrice;
+
+                                // Display the calculated price in the second textbox
+                                calculatedPriceTextbox.value = calculatedPrice; // Set the value of the second textbox
+                                // Show the calculated price in the span if needed
+                                calculatedPriceElement.innerText = "Total : ₹" + calculatedPrice;
+                                calculatedPriceElement.style.display = "inline";
+                            } else {
+                                // Clear the calculated price in the textbox if no valid option is selected
+                                calculatedPriceTextbox.value = "";
+                                // Hide the calculated price span
+                                calculatedPriceElement.style.display = "none";
+                            }
+                        }
+                    </script>
+                    <!--  <script>
                 function calculatePrice() {
                     var selectedTenure = parseInt(document.getElementById('monthdrop').value);
              //alert(selectedTenure)
@@ -154,102 +158,110 @@
                     document.getElementById('calculatedPrice').innerText = "₹" + calculatedPrice;
                 }
             </script>-->
-            </div>
-        </div>
-    </section>
-
-    <section class="inner-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <ul class="nav nav-tabs">
-                        <li><a class="tab-link active" data-bs-toggle="tab">Product Details</a></li>
-                    </ul>
                 </div>
             </div>
-            <div class="tab-pane fade show active" id="tab-desc">
+        </section>
+
+        <section class="inner-section">
+            <div class="container">
                 <div class="row">
-                    {% for pdetailsdata in pdetails_data %}
                     <div class="col-lg-12">
-                        <div class="product-details-frame">
-                            <div class="tab-descrip">
-                                <p>{{pdetailsdata.5}} </p>
+                        <ul class="nav nav-tabs">
+                            <li><a class="tab-link active" data-bs-toggle="tab">Product Details</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="tab-pane fade show active" id="tab-desc">
+                    <div class="row">
+                        {% for pdetailsdata in pdetails_data %}
+                        <div class="col-lg-12">
+                            <div class="product-details-frame">
+                                <div class="tab-descrip">
+                                    <p>{{pdetailsdata.5}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="inner-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="section-heading"><h2>You May Also Like These</h2></div>
+                    </div>
+                </div>
+                <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
+                    {% for allpdata in allp_data %}
+                    <div class="col">
+                        <div class="product-card" style="height: 440px;">
+                            <div class="product-media">
+                                <div class="product-label"><label class="label-text sale">{{allpdata.19}}</label></div>
+                                <a class="product-image"><img style="height: 200px; width: 200px;" src="/media/{{allpdata.6}}" alt="product" /></a>
+                            </div>
+                            <div class="product-content">
+                                <div class="product-rating">
+                                    <i class="active icofont-star"></i><i class="active icofont-star"></i><i class="active icofont-star"></i><i class="active icofont-star"></i><i class="icofont-star"></i><a>(3)</a>
+                                </div>
+                                <h6 class="product-name"><a>{{allpdata.4}}</a></h6>
+                                <h6 class="details-price">
+                                    <del>₹{{allpdata.12}}</del><br />
+                                    <span style="color: green;">
+                                        ₹{{allpdata.13}}<small><b>/Monthly Rent</b></small>
+                                    </span>
+                                </h6>
+                                <a
+                                    class="details-wish wish"
+                                    href="/uproductdetails?p_id={{allpdata.0}}"
+                                    title="Add"
+                                    style="
+                                        display: inline-block;
+                                        padding: 8px 70px;
+                                        background-color: #e8e8e8;
+                                        color: #39404a;
+                                        text-align: center;
+                                        text-decoration: none;
+                                        border-radius: 5px;
+                                        font-size: 16px;
+                                        transition: background-color 0.3s, color 0.3s;
+                                    "
+                                    onmouseover="this.style.backgroundColor='#de3326'; this.style.color='white';"
+                                    onmouseout="this.style.backgroundColor='#e8e8e8'; this.style.color='#39404a';"
+                                >
+                                    <i class="fas fa-shopping-basket" style="margin-right: 5px;"></i>
+                                    <span>add</span>
+                                </a>
+                                <!--<button class="product-add" title="Add to Cart"><i class="fas fa-shopping-basket"></i><span>add</span></button>
+                            <div class="product-action">
+                                <button class="action-minus" title="Quantity Minus"><i class="icofont-minus"></i></button><input class="action-input" title="Quantity Number" type="text" name="quantity" value="1" />
+                                <button class="action-plus" title="Quantity Plus"><i class="icofont-plus"></i></button>
+                            </div>-->
                             </div>
                         </div>
                     </div>
                     {% endfor %}
                 </div>
-            </div>
-        </div>
-    </section>
-
-
-    <section class="inner-section">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <div class="section-heading"><h2>You May Also Like These</h2></div>
-                </div>
-            </div>
-            <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
-                {% for allpdata in allp_data %}
-                <div class="col">
-                    <div class="product-card" style="height:440px;">
-                        <div class="product-media">
-                            <div class="product-label"><label class="label-text sale">{{allpdata.19}}</label></div>
-                            <a class="product-image"><img style="height:200px;width:200px;" src="/media/{{allpdata.6}}" alt="product" /></a>
-                        </div>
-                        <div class="product-content">
-                            <div class="product-rating">
-                                <i class="active icofont-star"></i><i class="active icofont-star"></i><i class="active icofont-star"></i><i class="active icofont-star"></i><i class="icofont-star"></i><a>(3)</a>
-                            </div>
-                            <h6 class="product-name"><a>{{allpdata.4}}</a></h6>
-                            <h6 class="details-price">
-                                <del>₹{{allpdata.12}}</del><br><span style="color: green;">₹{{allpdata.13}}<small><b>/Monthly Rent</b></small></span>
-                            </h6>
-                            <a class="details-wish wish" 
-                                    href="/uproductdetails?p_id={{allpdata.0}}"
-                                    title="Add" 
-                                    style="display: inline-block; padding: 8px 70px; background-color: #e8e8e8; color: #39404a; text-align: center; text-decoration: none; border-radius: 5px; font-size: 16px; transition: background-color 0.3s, color 0.3s;"
-                                    onmouseover="this.style.backgroundColor='#de3326'; this.style.color='white';"
-                                    onmouseout="this.style.backgroundColor='#e8e8e8'; this.style.color='#39404a';">
-                                    <i class="fas fa-shopping-basket" style="margin-right: 5px;"></i>
-                                    <span>add</span>
-                                    </a>
-                            <!--<button class="product-add" title="Add to Cart"><i class="fas fa-shopping-basket"></i><span>add</span></button>
-                            <div class="product-action">
-                                <button class="action-minus" title="Quantity Minus"><i class="icofont-minus"></i></button><input class="action-input" title="Quantity Number" type="text" name="quantity" value="1" />
-                                <button class="action-plus" title="Quantity Plus"><i class="icofont-plus"></i></button>
-                            </div>-->
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-           <!-- <div class="row">
+                <!-- <div class="row">
                 <div class="col-lg-12">
                     <div class="section-btn-25">
                         <a href="shop-4column.html" class="btn btn-outline"><i class="fas fa-eye"></i><span>view all related</span></a>
                     </div>
                 </div>
             </div>-->
-        </div>
-    </section>
-   
-     
+            </div>
+        </section>
 
-
-      <!--End-->
-      <!-- Start of Footer section
+        <!--End-->
+        <!-- Start of Footer section
       ============================================= -->
-      {% include 'ufooter.html' %}		
-      <!-- End of Footer section
-         ============================================= -->	
-   
-      <!-- For Js Library -->
-      {% include 'uscript.html' %}
-      
-      
-   </body>
-   
+        {% include 'ufooter.html' %}
+        <!-- End of Footer section
+         ============================================= -->
+
+        <!-- For Js Library -->
+        {% include 'uscript.html' %}
+    </body>
 </html>

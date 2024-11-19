@@ -100,7 +100,7 @@ def ucontactus(request):
             f_msg = request.POST.get("f_msg")
 
             f_status = "Deactive"
-            cdate = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            cdate = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
              #insert query
               
@@ -141,7 +141,7 @@ def usignup(request):
             
             u_status = "Active"
 
-            cdate = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            cdate = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
             #insert query
             sel = "select * from user_tb where `u_contact` = '"+str(u_contact)+"'"
@@ -230,7 +230,7 @@ def usignin(request):
 def usignout(request):
     try:
             username = request.session["userid"]
-            cdate = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            cdate = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
             ins = "UPDATE `user_tb` set `u_udate` = '"+cdate+"' where u_id = '"+str(username)+"'"
 
@@ -415,38 +415,74 @@ def uforgotpassword(request):
         
 def uproductdetails(request):
     try:
-        p_id = request.GET.get("p_id")
-        city_data = city_dropdown()
-        city_id = request.session.get('city_id')
-        
-        if p_id:
-            query = "SELECT * FROM product_tb, category_tb, subcategory_tb WHERE product_tb.cat_id = category_tb.cat_id AND product_tb.sub_id = subcategory_tb.sub_id AND category_tb.cat_status = 'Active' AND subcategory_tb.sub_status = 'Active' AND product_tb.p_status = 'Active' AND product_tb.p_id = '"+str(p_id)+"'"
-            # query = "SELECT product_tb.*, category_tb.*, subcategory_tb.*, city_tb.c_name FROM product_tb, category_tb, subcategory_tb, city_tb WHERE product_tb.cat_id = category_tb.cat_id AND product_tb.sub_id = subcategory_tb.sub_id AND product_tb.c_id = city_tb.c_id AND category_tb.cat_status = 'Active' AND subcategory_tb.sub_status = 'Active' AND product_tb.p_status = 'Active' AND product_tb.p_id = '" + str(p_id) + "'"
+        if request.POST:
+            p_id = request.GET.get("p_id")
+            username = request.session["userid"]        
+            b_duration = request.POST.get('durationdrop')           
+            b_price = request.POST.get('hprice')           
+            b_deposite = request.POST.get('hdeposite')          
+            b_total = request.POST.get('hcalculate')  
+            b_startdate = datetime.now().strftime("%Y-%m-%d")
+            b_enddate = (datetime.now() + timedelta(days=int(b_duration) * 30)).strftime("%Y-%m-%d")
+            b_duestatus = 'Active'  
+            b_status = 'Cart'
+            cdate = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             
-            if city_id is not None:
-                query += " AND product_tb.c_id = '" + str(city_id) + "'"
-                query += " ORDER BY p_id desc"
-                
-                mydb = getdb()
-                mycursor = mydb.cursor()
-                mycursor.execute(query)
-                pdetails_data = mycursor.fetchall()
+            checkproduct = "SELECT * FROM booking_tb WHERE u_id = '"+str(username)+"' AND p_id = '"+str(p_id)+"' AND b_status = 'Cart' AND b_duestatus = 'Active'"
             
-        query2 = "SELECT * FROM product_tb, category_tb, subcategory_tb WHERE product_tb.cat_id = category_tb.cat_id AND product_tb.sub_id = subcategory_tb.sub_id AND category_tb.cat_status = 'Active' AND subcategory_tb.sub_status = 'Active' AND product_tb.p_status = 'Active'"
-        if city_id is not None:
-            query2 += " AND product_tb.c_id = '" + str(city_id) + "'"
-            query2 += " ORDER BY p_id limit 10"
-                        
             mydb = getdb()
             mycursor = mydb.cursor()
-            mycursor.execute(query2)
-            allp_data = mycursor.fetchall()
-            alldata = {
-                    'pdetails_data' :pdetails_data,
-                    'city_data' :city_data,
-                    'allp_data' :allp_data
-                    }
-            return render(request,'uproductdetails.html',alldata)
+            mycursor.execute(checkproduct)
+            check_data = mycursor.fetchall()
+            
+            if len(check_data) > 0:
+                return HttpResponse("""
+                    <script>
+                        alert('Oops! This item is already in your shopping cart.');
+                        window.location.href = '/ucart';
+                    </script>
+                """)
+            else:
+                insbook = "INSERT INTO booking_tb (u_id,p_id,b_quantity,b_price,b_total, b_startdate, b_enddate, b_duration, b_duestatus, b_status, b_cdate, b_udate, b_deposite) VALUES ('"+str(username)+"','"+str(p_id)+"','1','"+str(b_price)+"','"+str(b_total)+"','"+b_startdate+"','"+b_enddate+"','"+str(b_duration)+"','"+str(b_duestatus)+"','"+str(b_status)+"', '"+cdate+"','"+cdate+"','"+str(b_deposite)+"')"
+    
+                mydb = getdb()
+                mycursor = mydb.cursor()
+                mycursor.execute(insbook)
+                mydb.commit()  
+                return redirect("/ucart")
+        else:
+            p_id = request.GET.get("p_id")
+            city_data = city_dropdown()
+            city_id = request.session.get('city_id')
+            
+            if p_id:
+                query = "SELECT * FROM product_tb, category_tb, subcategory_tb WHERE product_tb.cat_id = category_tb.cat_id AND product_tb.sub_id = subcategory_tb.sub_id AND category_tb.cat_status = 'Active' AND subcategory_tb.sub_status = 'Active' AND product_tb.p_status = 'Active' AND product_tb.p_id = '"+str(p_id)+"'"
+                # query = "SELECT product_tb.*, category_tb.*, subcategory_tb.*, city_tb.c_name FROM product_tb, category_tb, subcategory_tb, city_tb WHERE product_tb.cat_id = category_tb.cat_id AND product_tb.sub_id = subcategory_tb.sub_id AND product_tb.c_id = city_tb.c_id AND category_tb.cat_status = 'Active' AND subcategory_tb.sub_status = 'Active' AND product_tb.p_status = 'Active' AND product_tb.p_id = '" + str(p_id) + "'"
+                
+                if city_id is not None:
+                    query += " AND product_tb.c_id = '" + str(city_id) + "'"
+                    query += " ORDER BY p_id desc"
+                    
+                    mydb = getdb()
+                    mycursor = mydb.cursor()
+                    mycursor.execute(query)
+                    pdetails_data = mycursor.fetchall()
+                
+            query2 = "SELECT * FROM product_tb, category_tb, subcategory_tb WHERE product_tb.cat_id = category_tb.cat_id AND product_tb.sub_id = subcategory_tb.sub_id AND category_tb.cat_status = 'Active' AND subcategory_tb.sub_status = 'Active' AND product_tb.p_status = 'Active'"
+            if city_id is not None:
+                query2 += " AND product_tb.c_id = '" + str(city_id) + "'"
+                query2 += " ORDER BY p_id limit 10"
+                            
+                mydb = getdb()
+                mycursor = mydb.cursor()
+                mycursor.execute(query2)
+                allp_data = mycursor.fetchall()
+                alldata = {
+                        'pdetails_data' :pdetails_data,
+                        'city_data' :city_data,
+                        'allp_data' :allp_data
+                        }
+                return render(request,'uproductdetails.html',alldata)
         
             
     except NameError:
@@ -473,7 +509,7 @@ def uprofile(request):
 
             u_password = request.POST.get('u_password')
           
-            cdate = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            cdate = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
             #query
             updateprofile = "update user_tb set u_name = '"+str(u_name)+"',u_address = '"+str(u_address)+"',u_img = '"+str(old_img)+"',u_password = '"+str(u_password)+"',u_udate = '"+cdate+"' where u_id = '"+str(username)+"'"
@@ -544,6 +580,7 @@ def ucart(request):
             
             if len(cart_data) > 0:
                 for cartdata in cart_data:
+                    b_id = cartdata[0] 
                     p_id = cartdata[2] 
                     b_quantity = cartdata[5] 
                     b_price = cartdata[6] 
@@ -555,14 +592,15 @@ def ucart(request):
                     b_startdate = datetime.now().strftime("%Y-%m-%d")
                     b_enddate = (datetime.now() + timedelta(days=int(b_duration) * 30)).strftime("%Y-%m-%d")
                     
-                    insbook = "INSERT INTO booking_tb (u_id,p_id,b_shippingadd,b_pincode,b_quantity,b_price,b_total, b_startdate, b_enddate, b_duration, b_duestatus, b_status, b_cdate, b_udate, b_deposite) VALUES ('"+str(username)+"','"+str(p_id)+"','"+str(b_shippingadd)+"','"+str(b_pincode)+"','"+str(b_quantity)+"','"+str(b_price)+"','"+str(b_total)+"','"+b_startdate+"','"+b_enddate+"','"+str(b_duration)+"','"+str(b_duestatus)+"','"+str(b_status)+"', '"+cdate+"','"+cdate+"','"+str(b_deposite)+"')"
-                    mycursor.execute(insbook)
+                    # insbook = "INSERT INTO booking_tb (u_id,p_id,b_shippingadd,b_pincode,b_quantity,b_price,b_total, b_startdate, b_enddate, b_duration, b_duestatus, b_status, b_cdate, b_udate, b_deposite) VALUES ('"+str(username)+"','"+str(p_id)+"','"+str(b_shippingadd)+"','"+str(b_pincode)+"','"+str(b_quantity)+"','"+str(b_price)+"','"+str(b_total)+"','"+b_startdate+"','"+b_enddate+"','"+str(b_duration)+"','"+str(b_duestatus)+"','"+str(b_status)+"', '"+cdate+"','"+cdate+"','"+str(b_deposite)+"')"
+                    updatecart = "update booking_tb set p_id = '"+str(p_id)+"',b_shippingadd = '"+str(b_shippingadd)+"',b_pincode = '"+str(b_pincode)+"',b_price = '"+str(b_price)+"',b_total = '"+str(b_total)+"',b_startdate = '"+b_startdate+"',b_enddate = '"+b_enddate+"',b_duration = '"+str(b_duration)+"',b_duestatus = '"+str(b_duestatus)+"',b_status = '"+str(b_status)+"',b_udate = '"+cdate+"',b_deposite = '"+str(b_deposite)+"' where u_id = '"+str(username)+"' AND b_id = '"+str(b_id)+"'"
+                    mycursor.execute(updatecart)
                     mydb.commit()  
-                    last_b_id = mycursor.lastrowid
+                    # last_b_id = mycursor.lastrowid
         
                     pay_type = 'Deposite'  
                     pay_status = 'Failed' 
-                    ins_payment = "INSERT INTO payment_tb (b_id, b_type, p_amount, p_status, p_cdate) VALUES ('"+str(last_b_id)+"','"+str(pay_type)+"','"+str(b_deposite)+"','"+str(pay_status)+"','"+cdate+"')"
+                    ins_payment = "INSERT INTO payment_tb (b_id, b_type, p_amount, p_status, p_cdate) VALUES ('"+str(b_id)+"','"+str(pay_type)+"','"+str(b_deposite)+"','"+str(pay_status)+"','"+cdate+"')"
                     mycursor.execute(ins_payment)
                     mydb.commit()
             return redirect("/ubooking")
