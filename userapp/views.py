@@ -565,6 +565,9 @@ def ubooking(request):
 def ucart(request):
     try:
         if request.POST:
+            b1_id = ""
+            payableAmount = request.POST.get('payableAmount') 
+            
             city_data = city_dropdown()
             username = request.session["userid"]
             b_shippingadd = request.POST.get('b_shippingadd')
@@ -580,6 +583,7 @@ def ucart(request):
             
             if len(cart_data) > 0:
                 for cartdata in cart_data:
+                    b1_id = b1_id + str(cartdata[0]) + "," 
                     b_id = cartdata[0] 
                     p_id = cartdata[2] 
                     b_quantity = cartdata[5] 
@@ -596,15 +600,16 @@ def ucart(request):
                     updatecart = "update booking_tb set p_id = '"+str(p_id)+"',b_shippingadd = '"+str(b_shippingadd)+"',b_pincode = '"+str(b_pincode)+"',b_price = '"+str(b_price)+"',b_total = '"+str(b_total)+"',b_startdate = '"+b_startdate+"',b_enddate = '"+b_enddate+"',b_duration = '"+str(b_duration)+"',b_duestatus = '"+str(b_duestatus)+"',b_status = '"+str(b_status)+"',b_udate = '"+cdate+"',b_deposite = '"+str(b_deposite)+"' where u_id = '"+str(username)+"' AND b_id = '"+str(b_id)+"'"
                     mycursor.execute(updatecart)
                     mydb.commit()  
-                    # last_b_id = mycursor.lastrowid
+                    
         
                     pay_type = 'Deposite'  
                     pay_status = 'Failed' 
                     ins_payment = "INSERT INTO payment_tb (b_id, b_type, p_amount, p_status, p_cdate) VALUES ('"+str(b_id)+"','"+str(pay_type)+"','"+str(b_deposite)+"','"+str(pay_status)+"','"+cdate+"')"
                     mycursor.execute(ins_payment)
                     mydb.commit()
-            return redirect("/ubooking")
-        
+            
+            return redirect(f"/upayment?b_id={b1_id}&payableAmount={payableAmount}")
+            
         elif request.GET.get("b_del") != None:
             b_del = request.GET.get("b_del")
             Delbook = "DELETE from `booking_tb` where booking_tb.b_id = '"+str(b_del)+"'"
@@ -710,5 +715,29 @@ def ubills(request):
         print("Internal Error")
     except:
         print("Error returned") 
+          
+def upayment(request):
+    try:
+        if request.POST:
+            payableAmount = request.GET.get('payableAmount')
+            b_id = request.GET.get("b_id")
+            b_id_list = b_id.split(",")
+            cdate = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            
+            for bid in b_id_list:
+                
+                up1 = "update payment_tb set p_status = 'Success', p_cdate = '"+cdate+"' where b_id	 = '"+str(bid)+"'"
+                mydb = getdb()
+                mycursor = mydb.cursor()
+                mycursor.execute(up1)
+                mydb.commit()
+            return redirect("ubooking")
+        else:
+            return render(request,'upayment.html',{})
+
+    except NameError:
+        print("internal error")
+    except:
+        print('Error returned')
 
      
