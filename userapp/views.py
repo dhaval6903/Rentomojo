@@ -698,16 +698,16 @@ def ucart(request):
 def ubills(request):
     try:
         city_data = city_dropdown()
-        # username = request.session["userid"]
-        # selcart = "SELECT * FROM booking_tb,product_tb WHERE booking_tb.p_id = product_tb.p_id and booking_tb.b_status = 'Pending' and booking_tb.b_duestatus = 'Active' and booking_tb.u_id = '"+str(username)+"' order by b_id desc " 
+        username = request.session["userid"]
+        bill = "SELECT * FROM bill_tb,booking_tb WHERE bill_tb.b_id = booking_tb.b_id AND booking_tb.u_id = '"+str(username)+"'" 
 
-        # mydb = getdb()
-        # mycursor = mydb.cursor()
-        # mycursor.execute(selcart)
-        # cart_data = mycursor.fetchall()
+        mydb = getdb()
+        mycursor = mydb.cursor()
+        mycursor.execute(bill)
+        bill_data = mycursor.fetchall()
 
         alldata = {
-            # 'cart_data':cart_data,
+            'bill_data':bill_data,
             'city_data':city_data
         }
         return render(request,'ubills.html',alldata)
@@ -739,5 +739,44 @@ def upayment(request):
         print("internal error")
     except:
         print('Error returned')
+        
+def upaymentlist(request):
+    try:
+        if request.GET.get("b_id") !=None:
+            city_data = city_dropdown()
+            b_id = request.GET.get("b_id")
+            username = request.session["userid"]
+            singlepay = "SELECT * FROM payment_tb,booking_tb WHERE payment_tb.b_id = booking_tb.b_id and payment_tb.b_id = '"+str(b_id)+"' AND booking_tb.u_id = '"+str(username)+"'" 
+    
+            mydb = getdb()
+            mycursor = mydb.cursor()
+            mycursor.execute(singlepay)
+            payment_list = mycursor.fetchall()
+           
+            alldata = {
+                'payment_list':payment_list,
+                'city_data':city_data
+            }
+            return render(request,'upaymentlist.html',alldata)
+            
+        else:
+            city_data = city_dropdown()
+            username = request.session["userid"]
+            paysel = "SELECT * FROM payment_tb,booking_tb WHERE payment_tb.b_id = booking_tb.b_id AND booking_tb.u_id = '"+str(username)+"'" 
+
+            mydb = getdb()
+            mycursor = mydb.cursor()
+            mycursor.execute(paysel)
+            payment_list = mycursor.fetchall()
+
+            alldata = {
+                'payment_list':payment_list,
+                'city_data':city_data
+            }
+            return render(request,'upaymentlist.html',alldata)
+    except NameError:
+        print("Internal Error")
+    except:
+        print("Error returned") 
 
      

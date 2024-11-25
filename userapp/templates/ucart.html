@@ -36,7 +36,14 @@
                             <div class="account-card">
                                 <div class="account-title">
                                     <h4>Cart Details</h4>
+                                    <div class="banner-btn">
+                                        <a class="btn btn-inline" style="padding: 9px 9px;" href="/uproduct">
+                                            <i class="fas fa-cart-plus"></i>
+                                            <span>Continue Shopping</span>
+                                        </a>
+                                    </div>
                                 </div>
+
                                 <div class="account-content">
                                     <div class="row">
                                         {% if cart_data %}
@@ -161,7 +168,7 @@
                                             <div class="col-md-6 col-lg-12">
                                                 <div class="form-group">
                                                     <label class="form-label">Pincode</label>
-                                                    <input class="form-control" id="b_pincode" name="b_pincode" placeholder="Enter your pincode" type="text" required/>
+                                                    <input class="form-control" id="b_pincode" name="b_pincode" placeholder="Enter your pincode" maxlength="6" type="text" required/>
                                                 </div>
                                             </div>
                                             <div class="checkout-check" style="margin-top: 0px;">
@@ -173,7 +180,7 @@
                                             </div>
                                         </div>
                                         {% else %}
-                                        <div class="col-lg-12">
+                                        <div class="col-lg-12" style="color: red; font-size: x-large; text-align: center; margin-left: auto; margin-right: auto;">
                                             No items in the cart.!
                                         </div>
                                         {% endif %}

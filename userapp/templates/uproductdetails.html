@@ -92,7 +92,7 @@
                                 <div class="details-action-group">
                                     <div class="details-wish wish">
                                         <select class="form-control center-dropdown" onchange="calculatePrice()" id="monthdrop" name="durationdrop" style="text-align: center; text-align-last: center; cursor: pointer;" required>
-                                            <option selected>Choose Tenure </option>
+                                            <option value="" selected>Choose Tenure </option>
                                             <option value="1">1 Months</option>
                                             <option value="3">3 Months</option>
                                             <option value="6">6 Months</option>
@@ -108,7 +108,38 @@
                                     {% if request.session.userid == None %}
                                     <a class="details-wish wish" href="/usignin"> <i class="fas fa-shopping-cart"></i><span>Book Your Plan</span></a>
                                     {% else %}
-                                    <button class="product-add" title="Add to Cart" type="submit"><i class="fas fa-shopping-cart"></i><span>Book Your Plan</span></button>
+                                    <button
+                                        class=""
+                                        title="Add to Cart"
+                                        type="submit"
+                                        style="
+                                            width: 100%;
+                                            font-size: 15px;
+                                            padding: 6px 0px;
+                                            border-radius: 6px;
+                                            text-align: center;
+                                            text-transform: capitalize;
+                                            color: var(--heading);
+                                            background: var(--border);
+                                            text-shadow: var(-primary-tshadow);
+                                            display: -webkit-box;
+                                            display: -ms-flexbox;
+                                            display: flex;
+                                            -webkit-box-align: center;
+                                            -ms-flex-align: center;
+                                            align-items: center;
+                                            -webkit-box-pack: center;
+                                            -ms-flex-pack: center;
+                                            justify-content: center;
+                                            transition: all linear 0.3s;
+                                            -webkit-transition: all linear 0.3s;
+                                            -moz-transition: all linear 0.3s;
+                                            -ms-transition: all linear 0.3s;
+                                            -o-transition: all linear 0.3s;
+                                        "
+                                    >
+                                        <i class="fas fa-shopping-cart"></i><span>&nbsp;Book Your Plan</span>
+                                    </button>
                                     {% endif %}
                                 </div>
                             </form>

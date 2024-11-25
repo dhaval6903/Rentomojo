@@ -28,18 +28,18 @@
                         <h4 style="text-align:center;">Your Profile</h4>
                         <div class="form-group">
                             <div class="form-input-group">
-                                <input class="form-control" type="text" placeholder="Your Name" name="u_name" value="{{user_data.0.1}}"><i class="icofont-user-alt-3"></i>
+                                <input class="form-control" type="text" placeholder="Your Name" name="u_name" value="{{user_data.0.1}}" title="Please Enter Valid Name." pattern="[A-Za-z\s]+" required><i class="icofont-user-alt-3"></i>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="form-input-group">
-                                <input class="form-control" type="text" placeholder="Your Contact" name="u_contact" value="{{user_data.0.2}}" readonly><i class="icofont-phone"></i>
+                                <input class="form-control" type="text" placeholder="Your Contact" name="u_contact" value="{{user_data.0.2}}" readonly pattern="[0-9]{10}" title="Ex.9876543210" required><i class="icofont-phone"></i>
                             </div>
                         </div>
                         
                         <div class="form-group">
                             <div class="form-input-group">
-                                <textarea class="form-control" placeholder="Your Address" name="u_address" rows="2" style="height: 85px;" >{{user_data.0.3}}</textarea><i class="icofont-paragraph"></i>
+                                <textarea class="form-control" placeholder="Your Address" name="u_address" rows="2" style="height: 85px;" required>{{user_data.0.3}}</textarea><i class="icofont-paragraph"></i>
                             </div>
                             
                         </div>
@@ -51,7 +51,7 @@
                         </div>
                         <div class="form-group">
                             <div class="form-input-group"><input class="form-control" type="password"
-                                    placeholder="Your Password" id="myInput" name="u_password" value="{{user_data.0.5}}"><i class="icofont-lock"></i></div>
+                                    placeholder="Your Password" id="myInput" name="u_password" value="{{user_data.0.5}}" required><i class="icofont-lock"></i></div>
                                     <div style="margin-top: 12px;"> <input type="checkbox" onclick="myFunction()"> Show Password</div>
                         </div>                        
                         <button type="submit" class="form-btn-group"><i class="fas fa-user-edit"></i><span>Update Profile</span></button>

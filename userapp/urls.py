@@ -15,6 +15,7 @@ urlpatterns = [
     path('ucart', views.ucart, name='ucart'),
     path('ubills', views.ubills, name='ubills'),
     path('upayment', views.upayment, name='upayment'),
+    path('upaymentlist', views.upaymentlist, name='upaymentlist'),
     path('usignin', views.usignin, name='usignin'),
     path('usignout', views.usignout, name='usignout'),
     path('uforgotpassword', views.uforgotpassword, name='uforgotpassword'),

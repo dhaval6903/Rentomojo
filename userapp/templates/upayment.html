@@ -11,6 +11,7 @@
             	function hideURLbar(){ window.scrollTo(0,1); }
         </script>
         <!-- //for-mobile-apps -->
+        <link rel="icon" href="{% static 'images/favicontab.png' %}">
         <link href="{% static 'payment/css/style.css' %}" rel="stylesheet" type="text/css" media="all" />
         <link href="//fonts.googleapis.com/css?family=Fugaz+One" rel="stylesheet" type="text/css" />
         <link href="//fonts.googleapis.com/css?family=Alegreya+Sans:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,800,800italic,900,900italic" rel="stylesheet" type="text/css" />
@@ -33,7 +34,7 @@
             window.addEventListener("load", reloadOnceWithParameter);
         </script>
         <div class="main">
-            <h1>Payment Form Widget</h1>
+            <h1 style="color:#de3326;">Payment Form Widget</h1>
             <div class="content">
                 <script src="{% static 'payment/js/easyResponsiveTabs.js' %}" type="text/javascript"></script>
                 <script type="text/javascript">
@@ -59,35 +60,35 @@
                         <div class="resp-tabs-container">
                             <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-0">
                                 <div class="payment-info">
-                                    <h3 class="pay-title">Card Info</h3>
+                                    <h3 class="pay-title" style="color:black;font-weight:bold;">CARD INFO</h3>
                                     <form method="post">
                                         {% csrf_token %}
                                         <div class="tab-for">
                                             <h5>NAME ON CARD</h5>
-                                            <input type="text" value=""  placeholder="Enter Name On Card" required/>
+                                            <input type="text" value="" title="Please Enter Valid Name." pattern="[A-Za-z\s]+"  placeholder="Enter Name On Card" required/>
                                             <h5>CARD NUMBER</h5>
-                                            <input class="pay-logo" type="text" placeholder="0000-0000-0000-0000"  maxlength="16" required="" />
+                                            <input class="pay-logo" type="text" placeholder="0000-0000-0000-0000"  maxlength="16" required=""/>
                                         </div>
                                         <div class="transaction">
                                             <div class="tab-form-left user-form">
                                                 <h5>EXPIRATION</h5>
                                                 <ul>
                                                     <li>
-                                                        <input type="number" class="text_box" type="text" value="6" min="1" />
+                                                        <input type="number" class="text_box" type="text" value="6" min="1" required/>
                                                     </li>
                                                     <li>
-                                                        <input type="number" class="text_box" type="text" value="1988" min="1" />
+                                                        <input type="number" class="text_box" type="text" value="2024" min="1" required/>
                                                     </li>
                                                 </ul>
                                             </div>
                                             <div class="tab-form-right user-form-rt">
                                                 <h5>CVV NUMBER</h5>
-                                                <input type="text" placeholder="xxx" maxlength="3" required="" />
+                                                <input type="text" placeholder="xxx" maxlength="3" required=""/>
                                             </div>
                                             <div class="clear"></div>
                                         </div>
 
-                                        <input type="submit" value="SUBMIT" />
+                                        <input type="submit" value="SUBMIT"/>
                                     </form>
                                 </div>
                             </div>
@@ -95,7 +96,7 @@
                     </div>
                 </div>
             </div>
-            <p class="footer">Copyright © 2024 Electro Web Solution. All Rights Reserved</p>
+            <p class="footer" style="color:black;">Copyright © 2024 Electro Web Solution. All Rights Reserved</p>
         </div>
     </body>
 </html>

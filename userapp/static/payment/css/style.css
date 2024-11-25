@@ -105,7 +105,7 @@ p.footer a:hover{
 .resp-tab-item{
     font-size: 14px;
     text-decoration: none;
-    color: #a9acb1;
+    color: #49494a;
 	font-weight:600;
     cursor: pointer;
 	text-align: center;
@@ -185,7 +185,7 @@ li.resp-tab-item.resp-tab-active span label {
     font-weight: 600;
     border: 1px solid #e7ebee;
     outline: none;
-    color: #ccc;
+    color: #6d6a6a;
     border-radius: 5px;
     margin-bottom: 20px;
     transition:0.5s all;
@@ -202,7 +202,8 @@ li.resp-tab-item.resp-tab-active span label {
     font-weight: 600;
 }
 .tab-for input[type="text"]:hover{
-	border: 1px solid #B3E03F;
+	/* border: 1px solid #B3E03F; */
+	border: 1px solid #de3326;
     transition:0.5s all;
 	-webkit-transition:0.5s all;
 	-moz-transition:0.5s all;
@@ -212,7 +213,8 @@ li.resp-tab-item.resp-tab-active span label {
 input.pay-logo{
     width: 89.5% !important;
     padding: 8px 45px 8px 8px !important;
-    background: url(../images/visa.png) no-repeat 507px 5px;
+    /* background: url(../images/visa.png) no-repeat 507px 5px; */
+    background: url(../images/visa.png) no-repeat 485px 5px;
 }
 .tab-form-left {
     float: left;
@@ -260,7 +262,8 @@ input.text_box {
     font-weight: 600;
     border: 1px solid #e7ebee;
     outline: none;
-    color: #ccc;
+	color: #6d6a6a;
+    /* color: #ccc; */
     border-radius: 5px;
     margin-bottom: 30px;
     transition:0.5s all;
@@ -270,7 +273,8 @@ input.text_box {
 	-ms-transition:0.5s all;
 }
 .tab-form-right input[type="text"]:hover{
-	border: 1px solid #B3E03F;
+	/* border: 1px solid #B3E03F; */
+	border: 1px solid #de3326;
     transition:0.5s all;
 	-webkit-transition:0.5s all;
 	-moz-transition:0.5s all;
@@ -278,7 +282,8 @@ input.text_box {
 	-ms-transition:0.5s all;
 }
 .payment-info form input[type="submit"] {
-    background: #B3E03F;
+    /* background: #B3E03F; */
+    background: #de3326;
     color: #FFFFFF;
     text-align: center;
     padding: 10px 0;
@@ -296,7 +301,10 @@ input.text_box {
     -ms-transition: 0.5s all;
 }
 .payment-info form input[type="submit"]:hover{
-    background: #3AD5A0;
+    /* background: #3AD5A0; */
+	border: 2px solid #de3326;
+    background: #FFFFFF;
+	color: #de3326;
     transition: 0.5s all;
     -webkit-transition: 0.5s all;
     -moz-transition: 0.5s all;

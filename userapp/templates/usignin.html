@@ -28,11 +28,11 @@
                         <h4>USER SIGN IN</h4>
                         <div class="form-group">
                             <div class="form-input-group">
-                              <input class="form-control" type="text" placeholder="Contact Number" name="u_username"><i class="icofont-user-alt-3"></i></div>
+                              <input class="form-control" type="text" placeholder="Contact Number" name="u_username" pattern="[0-9]{10}" maxlength="10" title="Ex.9876543210"  required><i class="icofont-user-alt-3"></i></div>
                         </div>
                         <div class="form-group">
                             <div class="form-input-group"><input class="form-control" type="password"
-                                    placeholder="Your Password" id="myInput" name="u_password"><i class="icofont-lock"></i></div>
+                                    placeholder="Your Password" id="myInput" name="u_password" required><i class="icofont-lock"></i></div>
                                     <div style="margin-top: 12px;"> <input type="checkbox" onclick="myFunction()"> Show Password</div>
                         </div>   
                         

@@ -55,14 +55,13 @@
                             {% csrf_token %}
                             <h4>Drop Your Thoughts</h4>
                             <div class="form-group">
-                                <div class="form-input-group"><input class="form-control" type="text" placeholder="Your Name" name="f_name" /><i class="icofont-user-alt-3"></i></div>
+                                <div class="form-input-group"><input class="form-control" required type="text" title="Please Enter Valid Name." pattern="[A-Za-z\s]+" placeholder="Your Name" name="f_name" /><i class="icofont-user-alt-3"></i></div>
                             </div>
                             <div class="form-group">
-                                <div class="form-input-group"><input class="form-control" type="text" placeholder="Your Contact" name="f_contact" /><i class="icofont-phone"></i></div>
+                                <div class="form-input-group"><input class="form-control" pattern="[0-9]{10}" title="Ex.9876543210" maxlength="10"  required type="text" placeholder="Your Contact" name="f_contact" /><i class="icofont-phone"></i></div>
                             </div>
-
                             <div class="form-group">
-                                <div class="form-input-group"><textarea class="form-control" placeholder="Your Message" name="f_msg"></textarea><i class="icofont-paragraph"></i></div>
+                                <div class="form-input-group"><textarea class="form-control" required placeholder="Your Message" name="f_msg"></textarea><i class="icofont-paragraph"></i></div>
                             </div>
                             <button type="submit" class="form-btn-group"><i class="fas fa-envelope"></i><span>send message</span></button>
                         </form>

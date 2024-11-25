@@ -27,7 +27,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="account-card">
-                        <div class="account-title"><h3>Bill Details</h3></div>
+                        <div class="account-title"><h3>Payment Details</h3></div>
                         <div class="account-content" style="overflow-x:auto;">
                             <div class="table-scroll" >
                                 <table class="table-list">
@@ -35,32 +35,25 @@
                                         <tr>
                                             <th scope="col" class="th-padding">Sr No</th>
                                             <th scope="col" class="th-padding">Booking Id</th>
-                                            <th scope="col" class="th-padding">Start Date</th>
-                                            <th scope="col" class="th-padding">End Date</th>
-                                            <th scope="col" class="th-padding">Month</th>
-                                            <th scope="col" class="th-padding">Rent</th>
+                                            <th scope="col" class="th-padding">Booking Type</th>
+                                            <th scope="col" class="th-padding">Amount</th>
                                             <th scope="col" class="th-padding">Status</th>
                                             <th scope="col" class="th-padding">Created Date</th>
-                                            <th scope="col" class="th-padding">Updated Date</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                      {% for billdata in  bill_data %} 
+                                      {% for paymentlist in  payment_list %} 
                                         <tr>
                                             <td class="table-serial td-padding">{{ forloop.counter }}</td>
-                                            <td class="table-price td-padding">{{billdata.1}}</td>
-                                            <td class="table-price td-padding">{{billdata.2}}</td>
-                                            <td class="table-price td-padding">{{billdata.3}}</td>
-                                            <td class="table-price td-padding">{{billdata.4}}</td>
-                                            <td class="table-price td-padding">₹ {{billdata.5}}</td>
-                                            <td class="table-price td-padding" ><span  style="background-color: Green;color: white;padding: 4px;font-size: 14px;border-radius: 3px;">{{billdata.6}}</span></td>
-                                            
-                                            <td class="table-price td-padding">{{billdata.7 |date:'Y-m-d H:i:s'}}</td>
-                                            <td class="table-price td-padding">{{billdata.8 |date:'Y-m-d H:i:s'}}</td>
+                                            <td class="table-price td-padding">{{paymentlist.1}}</td>
+                                            <td class="table-price td-padding" ><span  style="background-color: navy;color: white;padding: 4px;font-size: 14px;border-radius: 3px;">{{paymentlist.2}}</span></td>
+                                            <td class="table-price td-padding">₹ {{paymentlist.3}}</td>
+                                            <td class="table-price td-padding" ><span  style="background-color: Green;color: white;padding: 4px;font-size: 14px;border-radius: 3px;">{{paymentlist.4}}</span></td>
+                                            <td class="table-price td-padding">{{paymentlist.5 |date:'Y-m-d H:i:s'}}</td>
                                         </tr> 
                                         {% empty %}
                                         <tr>
-                                        <td colspan="9" style="text-align: center;color:red; font-size: x-large;">
+                                        <td colspan="6" style="text-align: center;color:red; font-size: x-large;">
                                             No data available!!
                                         </td>
                                         </tr>
