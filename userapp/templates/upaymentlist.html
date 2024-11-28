@@ -46,9 +46,21 @@
                                         <tr>
                                             <td class="table-serial td-padding">{{ forloop.counter }}</td>
                                             <td class="table-price td-padding">{{paymentlist.1}}</td>
-                                            <td class="table-price td-padding" ><span  style="background-color: navy;color: white;padding: 4px;font-size: 14px;border-radius: 3px;">{{paymentlist.2}}</span></td>
+                                            <td class="table-price td-padding">
+                                                {% if paymentlist.2 == 'Deposite' %}
+                                                <span style="background-color: Green;color: white;padding: 4px;font-size: 14px;border-radius: 3px;">{{paymentlist.2}}</span>
+                                                {% else %}
+                                                <span style="background-color: #de3326;color: white;padding: 4px;font-size: 14px;border-radius: 3px;">{{paymentlist.2}}</span>
+                                                {% endif %}
+                                            </td>
                                             <td class="table-price td-padding">₹ {{paymentlist.3}}</td>
-                                            <td class="table-price td-padding" ><span  style="background-color: Green;color: white;padding: 4px;font-size: 14px;border-radius: 3px;">{{paymentlist.4}}</span></td>
+                                            <td class="table-price td-padding">
+                                                {% if paymentlist.4 == 'Success' %}
+                                                <span style="background-color: Green;color: white;padding: 4px;font-size: 14px;border-radius: 3px;">{{paymentlist.4}}</span>
+                                                {% else %}
+                                                <span style="background-color: #de3326;color: white;padding: 4px;font-size: 14px;border-radius: 3px;">{{paymentlist.4}}</span>
+                                                {% endif %}
+                                            </td>
                                             <td class="table-price td-padding">{{paymentlist.5 |date:'Y-m-d H:i:s'}}</td>
                                         </tr> 
                                         {% empty %}

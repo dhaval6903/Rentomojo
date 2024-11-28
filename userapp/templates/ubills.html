@@ -33,6 +33,7 @@
                                 <table class="table-list">
                                     <thead>
                                         <tr>
+                                            <th scope="col" class="th-padding">Action</th>
                                             <th scope="col" class="th-padding">Sr No</th>
                                             <th scope="col" class="th-padding">Booking Id</th>
                                             <th scope="col" class="th-padding">Start Date</th>
@@ -47,14 +48,28 @@
                                     <tbody>
                                       {% for billdata in  bill_data %} 
                                         <tr>
+                                            <td class="table-action td-padding">
+                                                {% if billdata.6 == "Pending" %}
+                                                    <a class="trash" href="/upayment?b_id={{billdata.1}},&payableAmount={{billdata.5}}&bill_id={{billdata.0}}&page=Rent">
+                                                        <span style="background-color: navy;color: white;padding: 4px;font-size: 14px;border-radius: 3px;">Pay Rent</span>
+                                                    </a>
+                                                {% else %}
+                                                    -
+                                                {% endif %}
+                                            </td>
                                             <td class="table-serial td-padding">{{ forloop.counter }}</td>
                                             <td class="table-price td-padding">{{billdata.1}}</td>
-                                            <td class="table-price td-padding">{{billdata.2}}</td>
-                                            <td class="table-price td-padding">{{billdata.3}}</td>
+                                            <td class="table-price td-padding">{{billdata.2 |date:'Y-m-d'}}</td>
+                                            <td class="table-price td-padding">{{billdata.3 |date:'Y-m-d'}}</td>
                                             <td class="table-price td-padding">{{billdata.4}}</td>
                                             <td class="table-price td-padding">₹ {{billdata.5}}</td>
-                                            <td class="table-price td-padding" ><span  style="background-color: Green;color: white;padding: 4px;font-size: 14px;border-radius: 3px;">{{billdata.6}}</span></td>
-                                            
+                                            <td class="table-price td-padding">
+                                                {% if billdata.6 == 'Complete' %}
+                                                <span style="background-color: Green;color: white;padding: 4px;font-size: 14px;border-radius: 3px;">{{billdata.6}}</span>
+                                                {% else %}
+                                                <span style="background-color: #de3326;color: white;padding: 4px;font-size: 14px;border-radius: 3px;">{{billdata.6}}</span>
+                                                {% endif %}
+                                            </td>
                                             <td class="table-price td-padding">{{billdata.7 |date:'Y-m-d H:i:s'}}</td>
                                             <td class="table-price td-padding">{{billdata.8 |date:'Y-m-d H:i:s'}}</td>
                                         </tr> 

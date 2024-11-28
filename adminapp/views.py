@@ -1103,7 +1103,7 @@ def generatebill(request):
             # formatted_next_date = next_date.strftime("%Y-%m-%d")
             bill_month = request.POST.get("bill_month")
 
-            selbooking = "SELECT * FROM booking_tb,user_tb,product_tb WHERE booking_tb.p_id = product_tb.p_id AND booking_tb.u_id = user_tb.u_id and booking_tb.b_duestatus = 'Active' and booking_tb.b_status = 'Complete' "
+            selbooking = "SELECT * FROM booking_tb,user_tb,product_tb WHERE booking_tb.p_id = product_tb.p_id AND booking_tb.u_id = user_tb.u_id and booking_tb.b_duestatus = 'Active' and booking_tb.b_status = 'Complete'"
             # connection create object
             mydb = getdb()
             mycursor = mydb.cursor()
@@ -1133,11 +1133,13 @@ def generatebill(request):
 
                     selmonth = "SELECT DATE_FORMAT(DATE_ADD(b_startdate, INTERVAL t.n MONTH), '%m-%Y') AS month FROM booking_tb, ( SELECT @row := @row + 1 AS n FROM (SELECT 0 UNION ALL SELECT 1 UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4 UNION ALL SELECT 5 UNION ALL SELECT 6 UNION ALL SELECT 7 UNION ALL SELECT 8 UNION ALL SELECT 9 UNION ALL SELECT 10 UNION ALL SELECT 11) a, (SELECT @row := -1) b ) t WHERE b_id = '"+str(booking_id)+"' AND DATE_ADD(b_startdate, INTERVAL t.n MONTH) < b_enddate"
                     # connection create object
+                    
                     mydb = getdb()
                     mycursor = mydb.cursor()
                     #query execute
                     mycursor.execute(selmonth)
                     month_data = mycursor.fetchall()
+                    
 
                     if len(month_data) > 0:
                         for monthdata in month_data:

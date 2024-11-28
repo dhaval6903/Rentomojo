@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Nov 12, 2024 at 08:10 AM
+-- Generation Time: Nov 28, 2024 at 08:46 AM
 -- Server version: 5.7.26
 -- PHP Version: 7.2.18
 
@@ -47,8 +47,9 @@ CREATE TABLE IF NOT EXISTS `bill_tb` (
 --
 
 INSERT INTO `bill_tb` (`bill_id`, `b_id`, `bill_startdate`, `bill_enddate`, `bill_month`, `bill_rent`, `bill_status`, `bill_cdate`, `bill_udate`) VALUES
-(2, 2, '2024-08-01', '2024-08-31', '08-2024', 444, 'Pending', '2024-09-12 13:25:37', '2024-09-12 13:25:37'),
-(3, 2, '2024-09-01', '2024-10-01', '09-2024', 444, 'Pending', '2024-09-12 13:26:56', '2024-09-12 13:26:56');
+(1, 2, '2024-12-27', '2025-01-26', '12-2024', 18600, 'Pending', '2024-11-27 11:18:48', '2024-11-27 11:18:48'),
+(2, 1, '2024-11-27', '2024-12-27', '11-2024', 10560, 'Complete', '2024-11-27 11:20:41', '2024-11-27 13:35:28'),
+(3, 2, '2024-11-27', '2024-12-27', '11-2024', 18600, 'Pending', '2024-11-27 11:20:41', '2024-11-27 11:20:41');
 
 -- --------------------------------------------------------
 
@@ -61,8 +62,8 @@ CREATE TABLE IF NOT EXISTS `booking_tb` (
   `b_id` int(11) NOT NULL AUTO_INCREMENT,
   `u_id` int(11) NOT NULL,
   `p_id` int(11) NOT NULL,
-  `b_shippingadd` text NOT NULL,
-  `b_pincode` int(11) NOT NULL,
+  `b_shippingadd` text,
+  `b_pincode` int(11) DEFAULT NULL,
   `b_quantity` int(11) NOT NULL,
   `b_price` int(11) NOT NULL,
   `b_total` int(11) NOT NULL,
@@ -75,17 +76,19 @@ CREATE TABLE IF NOT EXISTS `booking_tb` (
   `b_udate` datetime NOT NULL,
   `b_deposite` int(11) NOT NULL,
   PRIMARY KEY (`b_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `booking_tb`
 --
 
 INSERT INTO `booking_tb` (`b_id`, `u_id`, `p_id`, `b_shippingadd`, `b_pincode`, `b_quantity`, `b_price`, `b_total`, `b_startdate`, `b_enddate`, `b_duration`, `b_duestatus`, `b_status`, `b_cdate`, `b_udate`, `b_deposite`) VALUES
-(1, 6, 1, 'eee', 234566, 2, 900, 3600, '2024-09-03', '2024-09-10', '2', 'Active', 'Pending', '2024-09-07 00:00:00', '2024-09-07 00:00:00', 450),
-(2, 6, 1, 'Vavol', 382016, 2, 600, 1200, '2024-08-01', '2024-10-01', '1', 'Deactive', 'Pending', '2024-09-07 00:00:00', '2024-09-07 00:00:00', 300),
-(3, 6, 1, 'Gandhinagar', 382005, 2, 500, 2000, '2024-08-01', '2024-10-01', '2', 'Deactive', 'Pending', '2024-09-07 00:00:00', '2024-09-07 00:00:00', 250),
-(4, 6, 4, '559/1,sector-6,Gandhinagar', 382006, 2, 2000, 4000, '2024-11-10', '2024-11-12', '1', 'Active', 'Pending', '2024-11-11 00:00:00', '2024-11-12 00:00:00', 2500);
+(1, 6, 20, 'Vavol', 382016, 1, 10560, 10560, '2024-11-27', '2024-12-27', '1', 'Active', 'Complete', '2024-11-27 10:54:14', '2024-11-27 10:54:51', 5280),
+(2, 6, 15, 'Vavol', 382016, 1, 6200, 18600, '2024-11-27', '2025-02-25', '3', 'Active', 'Complete', '2024-11-27 10:54:25', '2024-11-27 10:54:51', 3100),
+(3, 6, 5, 'cccxxc', 382014, 5, 851, 12765, '2024-11-28', '2025-02-26', '3', 'Active', 'Pending', '2024-11-28 10:00:33', '2024-11-28 11:34:22', 425),
+(4, 6, 14, 'cccxxc', 382014, 5, 958, 14370, '2024-11-28', '2025-02-26', '3', 'Active', 'Pending', '2024-11-28 10:35:37', '2024-11-28 11:34:22', 479),
+(5, 6, 20, NULL, NULL, 5, 10560, 52800, '2024-11-28', '2024-12-28', '1', 'Active', 'Cart', '2024-11-28 11:38:42', '2024-11-28 11:42:35', 5280),
+(6, 6, 2, NULL, NULL, 3, 538, 58104, '2024-11-28', '2027-11-13', '36', 'Active', 'Cart', '2024-11-28 12:45:04', '2024-11-28 13:30:31', 269);
 
 -- --------------------------------------------------------
 
@@ -113,7 +116,7 @@ INSERT INTO `category_tb` (`cat_id`, `cat_name`, `cat_img`, `cat_status`, `cat_c
 (2, 'Furniture', 'Furniture.jpg', 'Active', '2024-09-25 11:27:12', '2024-09-25 11:27:12'),
 (3, 'Appliances', 'h.png', 'Active', '2024-09-25 11:27:58', '2024-09-25 11:27:58'),
 (4, 'Electronics', 'Electronics.jpg', 'Active', '2024-09-25 11:29:24', '2024-09-25 11:29:24'),
-(5, 'Bikes', 'Bikes.jpg', 'Deactive', '2024-09-25 11:30:40', '2024-11-07 11:43:05'),
+(5, 'Bikes', 'Bikes.jpg', 'Active', '2024-09-25 11:30:40', '2024-11-12 15:11:14'),
 (6, 'Baby & Kids', 'Baby & Kids.jpg', 'Deactive', '2024-09-25 11:32:15', '2024-11-07 11:43:18'),
 (7, 'Fitness', 'Fitness.jpg', 'Active', '2024-09-25 11:33:23', '2024-09-25 11:33:23');
 
@@ -203,7 +206,7 @@ CREATE TABLE IF NOT EXISTS `login_tb` (
 --
 
 INSERT INTO `login_tb` (`l_id`, `l_username`, `l_password`, `l_img`, `l_lastseen`) VALUES
-(1, 'admin', '12345', 'PROFILEIMG.jpeg', '2024-11-12 13:31:36');
+(1, 'admin', '12345', 'PROFILEIMG.jpeg', '2024-11-27 13:37:06');
 
 -- --------------------------------------------------------
 
@@ -220,14 +223,18 @@ CREATE TABLE IF NOT EXISTS `payment_tb` (
   `p_status` enum('Success','Failed') NOT NULL,
   `p_cdate` datetime NOT NULL,
   PRIMARY KEY (`pay_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `payment_tb`
 --
 
 INSERT INTO `payment_tb` (`pay_id`, `b_id`, `b_type`, `p_amount`, `p_status`, `p_cdate`) VALUES
-(1, 1, 'Rent', 33, 'Success', '2024-09-03 00:00:00');
+(1, 2, 'Deposite', 3100, 'Success', '2024-11-27 10:55:33'),
+(2, 1, 'Deposite', 5280, 'Success', '2024-11-27 10:55:33'),
+(11, 3, 'Deposite', 425, 'Success', '2024-11-28 11:34:33'),
+(10, 4, 'Deposite', 479, 'Success', '2024-11-28 11:34:33'),
+(9, 1, 'Rent', 10560, 'Success', '2024-11-27 13:35:28');
 
 -- --------------------------------------------------------
 
@@ -256,7 +263,7 @@ CREATE TABLE IF NOT EXISTS `product_tb` (
   `p_udate` datetime NOT NULL,
   `p_deposite` int(11) NOT NULL,
   PRIMARY KEY (`p_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `product_tb`
@@ -281,7 +288,8 @@ INSERT INTO `product_tb` (`p_id`, `cat_id`, `sub_id`, `c_id`, `p_name`, `p_detai
 (16, 7, 3, 3, 'Massage Chair with Ai Voice Command', 'Double layer airbag belt \r\n\r\nMassage Intensities 6 gears \r\n\r\nWaist hip swing massage \r\n\r\nShoulder height detection', '4d-massage-chairfull-jrv9-1-768x768.jpg', '4d-massage-chairfull-jrv9-9-768x768.jpg', 'm3.jpg', '57\" x 57\"', 'Matte Blue, Black', 'Matte & Metal', 12554, 6200, 'Active', '2024-09-25 14:43:51', '2024-09-26 17:49:36', 3100),
 (17, 7, 2, 3, 'Exercise Bike', 'Magnetic resistance 8 level \r\n\r\nMax user weight 120 Kg \r\n\r\nLCD Display & Tablet Holder \r\n\r\nLocking Pedal \r\n\r\nEasy to Move around & Store', '81iEmlGMqRL._SX679_.jpg', 'bike3.jpg', 'bike3.jpg', '43\" x 20\"', 'Black', 'Metal', 1440, 958, 'Active', '2024-09-25 14:40:02', '2024-11-11 11:32:02', 479),
 (18, 2, 10, 3, 'Engineered Wood Queen Bed', 'Space Saving \r\n\r\nDurable Build \r\n\r\nMeasurements may vary +/- 3 inches \r\n\r\nMattress size to fit- 72\"L x 60\"B \r\n', 'bad21.jpg', 'bad22.jpg', 'bad23.jpg', 'Double King', 'Wooden Brown', 'Engineered Wood', 847, 538, 'Active', '2024-09-25 13:27:30', '2024-09-25 13:27:30', 269),
-(19, 4, 5, 3, 'Asus Tuf A15 Gaming Laptop', 'Capacity/Size : 15.6\" \r\n\r\nGeneration: Ryzen 7 \r\n\r\nProcessor: Ryzen 7 Hexa Core, RAM: 16 GB \r\n\r\nStorage:512GB SSD \r\n\r\nGraphics Card: 4 GB Graphics Card \r\n\r\nAsus/Acer (As per the availability)', 'a15.jpg', 'l3_56KagL7.jpg', 'l3_56KagL7.jpg', '15.6\"', 'Fortress Gray', 'high-quality plastic', 18000, 5625, 'Active', '2024-09-25 14:29:04', '2024-09-26 17:46:42', 2812);
+(19, 4, 5, 3, 'Asus Tuf A15 Gaming Laptop', 'Capacity/Size : 15.6\" \r\n\r\nGeneration: Ryzen 7 \r\n\r\nProcessor: Ryzen 7 Hexa Core, RAM: 16 GB \r\n\r\nStorage:512GB SSD \r\n\r\nGraphics Card: 4 GB Graphics Card \r\n\r\nAsus/Acer (As per the availability)', 'a15.jpg', 'l3_56KagL7.jpg', 'l3_56KagL7.jpg', '15.6\"', 'Fortress Gray', 'high-quality plastic', 18000, 5625, 'Active', '2024-09-25 14:29:04', '2024-09-26 17:46:42', 2812),
+(20, 5, 13, 2, 'Royal reborn classic - Powered by RB', 'Braking System: Dual-channel ABS for improved safety\r\nInstrument Cluster: Combination of analogue speedometer and LCD display\r\nComfort: Ergonomically designed seat for long rides\r\nTyre Size: Front 90/90-19, Rear 120/80-18\r\nColors Available: 11 different color options including Halcyon Black, Madras Red, and Emerald', '1.jpg', '2.jpg', '3.jpg', 'Regular', 'Matte Blue, Black', 'high-quality Metal', 16720, 10560, 'Active', '2024-11-12 15:20:29', '2024-11-12 15:20:29', 5280);
 
 -- --------------------------------------------------------
 
@@ -299,7 +307,7 @@ CREATE TABLE IF NOT EXISTS `subcategory_tb` (
   `sub_cdate` datetime NOT NULL,
   `sub_udate` datetime NOT NULL,
   PRIMARY KEY (`sub_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `subcategory_tb`
@@ -317,7 +325,8 @@ INSERT INTO `subcategory_tb` (`sub_id`, `cat_id`, `sub_name`, `sub_img`, `sub_st
 (9, 3, 'Television', 'tv_f5IKjvM.jpg', 'Active', '2024-09-25 12:05:05', '2024-09-25 12:05:05'),
 (10, 2, 'Bedroom', 'Bedroom.jpg', 'Active', '2024-09-25 12:08:23', '2024-09-25 12:08:23'),
 (11, 2, 'Living Room', 'Living room.jpg', 'Active', '2024-09-25 12:11:28', '2024-09-25 12:11:28'),
-(12, 2, 'Kitchen & Dining', 'dining.jpg', 'Active', '2024-09-25 12:14:35', '2024-11-07 12:30:17');
+(12, 2, 'Kitchen & Dining', 'dining.jpg', 'Active', '2024-09-25 12:14:35', '2024-11-07 12:30:17'),
+(13, 5, 'Motorbikes', '195e0ddc-b9ab-4138-80f5-457cc05c5f6f.jpg', 'Active', '2024-11-12 15:15:29', '2024-11-12 15:15:29');
 
 -- --------------------------------------------------------
 
@@ -347,7 +356,7 @@ INSERT INTO `user_tb` (`u_id`, `u_name`, `u_contact`, `u_address`, `u_img`, `u_p
 (5, 'khushbu', 9537433214, 'ewd', '21.png', '3444', 'Active', '2024-09-18 18:13:31', '2024-09-18 18:13:31'),
 (1, 'Ria Verani', 9725510295, 'C-504 Sahyog Greens Gandhinagar', 'whiteshirt_FDK0fjL.jpeg', '12345', 'Active', '2024-09-09 15:19:55', '2024-09-21 12:31:34'),
 (3, 'Urvi Jam', 9313932817, '9 Pragati Residency Vadtal Anand', '9253960_5wed7J7.jpg', '123456', 'Active', '2024-02-08 15:21:33', '2024-11-09 17:41:02'),
-(6, 'DHAVALKUMAR G CHAUHAN', 9558174609, 'J-204,SHUBHAM RESIDENCY,VAVOL,GANDHINAGAR', '307ce493-b254-4b2d-8ba4-d12c080d6651.jpg', '123456789', 'Active', '2024-09-20 14:46:10', '2024-11-12 13:30:26');
+(6, 'DHAVALKUMAR G CHAUHAN', 9558174609, 'J-204,SHUBHAM RESIDENCY,VAVOL,NR KOLAVADA,GANDHINAGAR', '307ce493-b254-4b2d-8ba4-d12c080d6651.jpg', '123456789', 'Active', '2024-09-20 14:46:10', '2024-11-28 14:16:09');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

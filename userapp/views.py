@@ -23,10 +23,31 @@ def city_dropdown():
     except:
         print('ERROR TO FETCH DATA')
         return None
+    
+def get_cart_totals(username):
+   
+    total_quantity = 0
+    total_price = 0.00
+
+    if username is not None:
+        try:
+            query = "SELECT SUM(b_quantity) as total_quantity, SUM(b_total) as total_price FROM booking_tb WHERE b_status = 'Cart' AND b_duestatus = 'Active' AND u_id = %s"
+            mydb = getdb()
+            mycursor = mydb.cursor()
+            mycursor.execute(query, (username,))
+            cart_data = mycursor.fetchone()
+            if cart_data:
+                total_quantity = cart_data[0] if cart_data[0] is not None else 0
+                total_price = cart_data[1] if cart_data[1] is not None else 0.00
+        except Exception as e:
+            print(f"Error in get_cart_totals: {e}")
+    
+    return total_quantity, total_price
 
 def uindex(request):
     try:
         city_id = request.session.get('city_id')
+        username = request.session.get('userid')
         
         query = "SELECT * FROM product_tb, category_tb, subcategory_tb WHERE product_tb.cat_id = category_tb.cat_id AND product_tb.sub_id = subcategory_tb.sub_id AND category_tb.cat_status = 'Active' AND subcategory_tb.sub_status = 'Active' AND product_tb.p_status = 'Active'"
         
@@ -55,12 +76,15 @@ def uindex(request):
         f_data = mycursor.fetchall()
         
         city_data = city_dropdown()
+        total_quantity, total_price = get_cart_totals(username)
 
         alldata = {
             'cat_data':cat_data,
             'f_data':f_data,
             'city_data' :city_data,
-            'product_data' :product_data
+            'product_data' :product_data,
+            'total_quantity': total_quantity,
+            'total_price': total_price
             
         }
         return render(request,'uindex.html',alldata)
@@ -81,9 +105,13 @@ def set_city(request):
 def uaboutus(request):
     try:
         city_data = city_dropdown()
+        username = request.session.get("userid")
+        total_quantity, total_price = get_cart_totals(username)
 
         alldata = {
-            'city_data' :city_data
+            'city_data' :city_data,
+            'total_quantity': total_quantity,
+            'total_price': total_price
         }
         
         return render(request,'uaboutus.html',alldata)
@@ -94,6 +122,8 @@ def uaboutus(request):
 
 def ucontactus(request):
     try:
+        city_data = city_dropdown()
+        username = request.session.get("userid")
         if request.POST:
             f_name = request.POST.get("f_name")
             f_contact = request.POST.get("f_contact")
@@ -113,9 +143,12 @@ def ucontactus(request):
             return redirect("ucontactus")
         else:
             city_data = city_dropdown()
+            total_quantity, total_price = get_cart_totals(username)
 
             alldata = {
-                'city_data' :city_data
+                'city_data' :city_data,
+                'total_quantity': total_quantity,
+                'total_price': total_price
             }
             
             return render(request,'ucontactus.html',alldata)
@@ -254,6 +287,8 @@ def usignout(request):
         
 def uproduct(request):
     try:
+        username = request.session.get("userid")
+        total_quantity, total_price = get_cart_totals(username)
         if request.GET.get("pname") !=None:
             product_name = request.GET.get('pname')
             city_data = city_dropdown()
@@ -273,7 +308,9 @@ def uproduct(request):
             
             alldata = {
                 'product_data' :product_data,
-                'city_data' :city_data
+                'city_data' :city_data,
+                'total_quantity': total_quantity,
+                'total_price': total_price
             }
             
             return render(request,'uproduct.html',alldata)
@@ -297,7 +334,9 @@ def uproduct(request):
             
             alldata = {
                 'product_data' :product_data,
-                'city_data' :city_data
+                'city_data' :city_data,
+                'total_quantity': total_quantity,
+                'total_price': total_price
             }
             
             return render(request,'uproduct.html',alldata)
@@ -319,7 +358,9 @@ def uproduct(request):
             
             alldata = {
                 'product_data' :product_data,
-                'city_data' :city_data
+                'city_data' :city_data,
+                'total_quantity': total_quantity,
+                'total_price': total_price
             }
             
             return render(request,'uproduct.html',alldata)
@@ -331,6 +372,8 @@ def uproduct(request):
            
 def usubcategory(request):
     try:
+        username = request.session.get("userid")
+        total_quantity, total_price = get_cart_totals(username)
         if request.GET.get("cat_id") !=None:
             cat_id = request.GET.get("cat_id")
             city_data = city_dropdown()
@@ -344,7 +387,7 @@ def usubcategory(request):
             
             alldata = {
                 'subcat_data' :subcat_data,
-                'city_data' :city_data
+                'city_data' :city_data,
             }
             
             return render(request,'usubcategory.html',alldata)
@@ -359,7 +402,9 @@ def usubcategory(request):
             
             alldata = {
                 'subcat_data' :subcat_data,
-                'city_data' :city_data
+                'city_data' :city_data,
+                'total_quantity': total_quantity,
+                'total_price': total_price
             }
             
             return render(request,'usubcategory.html',alldata)
@@ -415,9 +460,11 @@ def uforgotpassword(request):
         
 def uproductdetails(request):
     try:
+        username = request.session.get("userid")
+        total_quantity, total_price = get_cart_totals(username)
         if request.POST:
             p_id = request.GET.get("p_id")
-            username = request.session["userid"]        
+            # username = request.session["userid"]        
             b_duration = request.POST.get('durationdrop')           
             b_price = request.POST.get('hprice')           
             b_deposite = request.POST.get('hdeposite')          
@@ -480,7 +527,9 @@ def uproductdetails(request):
                 alldata = {
                         'pdetails_data' :pdetails_data,
                         'city_data' :city_data,
-                        'allp_data' :allp_data
+                        'allp_data' :allp_data,
+                        'total_quantity': total_quantity,
+                        'total_price': total_price
                         }
                 return render(request,'uproductdetails.html',alldata)
         
@@ -493,9 +542,11 @@ def uproductdetails(request):
 def uprofile(request):
     try:
         city_data = city_dropdown()
+        username = request.session.get("userid")
+        total_quantity, total_price = get_cart_totals(username)
         if request.POST:
             #variable decleration
-            username = request.session["userid"]
+            # username = request.session["userid"]
             u_name = request.POST.get('u_name')
             u_contact = request.POST.get('u_contact')
             u_address = request.POST.get('u_address')
@@ -532,7 +583,9 @@ def uprofile(request):
             
             alldata = {
                     'user_data' :user_data,
-                    'city_data' :city_data
+                    'city_data' :city_data,
+                    'total_quantity': total_quantity,
+                    'total_price': total_price
                     }
 
             return render(request,'uprofile.html',alldata)
@@ -544,7 +597,9 @@ def uprofile(request):
 def ubooking(request):
     try:
         city_data = city_dropdown()
-        username = request.session["userid"]
+        username = request.session.get("userid")
+        total_quantity, total_price = get_cart_totals(username)
+        # username = request.session["userid"]
         selbooking = "SELECT * FROM booking_tb,user_tb,product_tb WHERE booking_tb.p_id = product_tb.p_id AND booking_tb.u_id = user_tb.u_id and booking_tb.b_status != 'Cart' and booking_tb.u_id = '"+str(username)+"' order by b_id desc " 
         #query exe - run
         mydb = getdb()
@@ -554,7 +609,9 @@ def ubooking(request):
 
         alldata = {
             'booking_data':booking_data,
-            'city_data':city_data
+            'city_data':city_data,
+            'total_quantity': total_quantity,
+            'total_price': total_price
         }
         return render(request,'ubooking.html',alldata)
     except NameError:
@@ -564,6 +621,8 @@ def ubooking(request):
 
 def ucart(request):
     try:
+        city_data = city_dropdown()
+        username = request.session.get("userid")
         if request.POST:
             b1_id = ""
             payableAmount = request.POST.get('payableAmount') 
@@ -608,7 +667,7 @@ def ucart(request):
                     mycursor.execute(ins_payment)
                     mydb.commit()
             
-            return redirect(f"/upayment?b_id={b1_id}&payableAmount={payableAmount}")
+            return redirect(f"/upayment?b_id={b1_id}&payableAmount={payableAmount}&page=Deposite")
             
         elif request.GET.get("b_del") != None:
             b_del = request.GET.get("b_del")
@@ -684,10 +743,14 @@ def ucart(request):
             mycursor = mydb.cursor()
             mycursor.execute(selcart)
             cart_data = mycursor.fetchall()
+            
+            total_quantity, total_price = get_cart_totals(username)
 
             alldata = {
                 'cart_data': cart_data,
-                'city_data': city_data
+                'city_data': city_data,
+                'total_quantity': total_quantity,
+                'total_price': total_price
             }
             return render(request, 'ucart.html', alldata)
     except NameError:
@@ -698,7 +761,9 @@ def ucart(request):
 def ubills(request):
     try:
         city_data = city_dropdown()
-        username = request.session["userid"]
+        username = request.session.get("userid")
+        total_quantity, total_price = get_cart_totals(username)
+        # username = request.session["userid"]
         bill = "SELECT * FROM bill_tb,booking_tb WHERE bill_tb.b_id = booking_tb.b_id AND booking_tb.u_id = '"+str(username)+"'" 
 
         mydb = getdb()
@@ -708,7 +773,9 @@ def ubills(request):
 
         alldata = {
             'bill_data':bill_data,
-            'city_data':city_data
+            'city_data':city_data,
+            'total_quantity': total_quantity,
+            'total_price': total_price
         }
         return render(request,'ubills.html',alldata)
     except NameError:
@@ -720,18 +787,35 @@ def upayment(request):
     try:
         if request.POST:
             payableAmount = request.GET.get('payableAmount')
+            bill_id = request.GET.get("bill_id")
+            page = request.GET.get("page")
             b_id = request.GET.get("b_id")
             b_id_list = b_id.split(",")
             cdate = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             
-            for bid in b_id_list:
+            if page == 'Deposite':
+                for bid in b_id_list:
+                    up1 = "update payment_tb set p_status = 'Success', p_cdate = '"+cdate+"' where b_id	 = '"+str(bid)+"'"
+                    mydb = getdb()
+                    mycursor = mydb.cursor()
+                    mycursor.execute(up1)
+                    mydb.commit()
+                return redirect("ubooking")
+            else:
+                for bid in b_id_list:
+                    if bid != "":
+                        up1 = "insert into payment_tb(b_id,b_type,p_amount,p_status,p_cdate)value('"+str(bid)+"','"+str(page)+"','"+str(payableAmount)+"','Success', '"+cdate+"')"
+                        mydb = getdb()
+                        mycursor = mydb.cursor()
+                        mycursor.execute(up1)
+                        mydb.commit()
                 
-                up1 = "update payment_tb set p_status = 'Success', p_cdate = '"+cdate+"' where b_id	 = '"+str(bid)+"'"
+                upbill = "update bill_tb set bill_status = 'Complete', bill_udate = '"+cdate+"' where bill_id = '"+str(bill_id)+"'"
                 mydb = getdb()
                 mycursor = mydb.cursor()
-                mycursor.execute(up1)
+                mycursor.execute(upbill)
                 mydb.commit()
-            return redirect("ubooking")
+                return redirect("ubills")
         else:
             return render(request,'upayment.html',{})
 
@@ -742,10 +826,12 @@ def upayment(request):
         
 def upaymentlist(request):
     try:
+        username = request.session.get("userid")
+        total_quantity, total_price = get_cart_totals(username)
         if request.GET.get("b_id") !=None:
             city_data = city_dropdown()
             b_id = request.GET.get("b_id")
-            username = request.session["userid"]
+            # username = request.session["userid"]
             singlepay = "SELECT * FROM payment_tb,booking_tb WHERE payment_tb.b_id = booking_tb.b_id and payment_tb.b_id = '"+str(b_id)+"' AND booking_tb.u_id = '"+str(username)+"'" 
     
             mydb = getdb()
@@ -755,7 +841,9 @@ def upaymentlist(request):
            
             alldata = {
                 'payment_list':payment_list,
-                'city_data':city_data
+                'city_data':city_data,
+                'total_quantity': total_quantity,
+                'total_price': total_price
             }
             return render(request,'upaymentlist.html',alldata)
             
@@ -771,7 +859,9 @@ def upaymentlist(request):
 
             alldata = {
                 'payment_list':payment_list,
-                'city_data':city_data
+                'city_data':city_data,
+                'total_quantity': total_quantity,
+                'total_price': total_price
             }
             return render(request,'upaymentlist.html',alldata)
     except NameError:

@@ -33,7 +33,7 @@
                                 <table class="table-list">
                                     <thead>
                                         <tr>
-                                            <th scope="col" class="th-padding">option</th>
+                                            <th scope="col" class="th-padding">Action</th>
                                             <th scope="col" class="th-padding">Sr No</th>
                                             <th scope="col" class="th-padding">Product</th>
                                             <th scope="col" class="th-padding">Deposite</th>
@@ -51,9 +51,7 @@
                                       {% for bdata in  booking_data %} 
                                         <tr>
                                             <td class="table-action td-padding">
-                                                <a class="trash" href="#" title="Pay Bill">
-                                                    <i class="fa fa-credit-card"></i>
-                                                </a>
+                                               
                                                 <a class="trash" href="/upaymentlist?b_id={{bdata.0}}" title="Pay Info">
                                                     <i class="fas fa-info-circle"></i>
                                                 </a>
@@ -67,8 +65,20 @@
                                             <td class="table-price td-padding"> ₹{{bdata.7}}/ Monthly</td>
                                             <td class="table-price td-padding">{{bdata.3}}<br>
                                             <span  style="background-color: navy;color: white;padding: 4px;font-size: 14px;border-radius: 3px;">{{bdata.4}}</span></td>
-                                            <td class="table-price td-padding" ><span  style="background-color: #119744;color: white;padding: 4px;font-size: 14px;border-radius: 3px;">{{bdata.11}}</span></td>
-                                            <td class="table-price td-padding" ><span  style="background-color: navy;color: white;padding: 4px;font-size: 14px;border-radius: 3px;">{{bdata.12}}</span></td>
+                                            <td class="table-price td-padding">
+                                                {% if bdata.11 == 'Active' %}
+                                                <span style="background-color: Green;color: white;padding: 4px;font-size: 14px;border-radius: 3px;">{{bdata.11}}</span>
+                                                {% else %}
+                                                <span style="background-color: #de3326;color: white;padding: 4px;font-size: 14px;border-radius: 3px;">{{bdata.11}}</span>
+                                                {% endif %}
+                                            </td>
+                                            <td class="table-price td-padding">
+                                                {% if bdata.12 == 'Complete' %}
+                                                <span style="background-color: Green;color: white;padding: 4px;font-size: 14px;border-radius: 3px;">{{bdata.12}}</span>
+                                                {% else %}
+                                                <span style="background-color: #de3326;color: white;padding: 4px;font-size: 14px;border-radius: 3px;">{{bdata.12}}</span>
+                                                {% endif %}
+                                            </td>
                                             <td class="table-price td-padding">{{bdata.13 |date:'Y-m-d H:i:s'}}
                                         </tr> 
                                         {% empty %}
